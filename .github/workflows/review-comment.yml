@@ -12,15 +12,20 @@ jobs:
   process-comment:
     if: >-
       github.event.issue.pull_request == null &&
-      (github.event.comment.user.login == github.repository_owner) &&
-      (contains(toJSON(github.event.comment.body), 'approve') ||
-       contains(toJSON(github.event.comment.body), 'reject'))
+      github.event.comment.user.login == github.repository_owner &&
+      (
+        github.event.comment.body == 'a' ||
+        github.event.comment.body == 'approve' ||
+        github.event.comment.body == 'approved' ||
+        github.event.comment.body == 'r' ||
+        github.event.comment.body == 'reject' ||
+        github.event.comment.body == 'rejected'
+      )
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Process quick review command
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -28,7 +33,6 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           REVIEW_COMMENT: ${{ github.event.comment.body }}
         run: python scripts/process_comment_review.py
-
       - name: Save review decision
         run: |
           git config user.name "AI Risk Radar Bot"
