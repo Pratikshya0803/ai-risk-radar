@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import hashlib
 import json
 import re
 import urllib.parse
@@ -11,28 +12,64 @@ PENDING_FILE = "data/pending-news.json"
 APPROVED_FILE = "data/approved-news.json"
 
 RISK_TERMS = {
-    "security": ["security", "hack", "hacked", "cyberattack", "cyber attack", "vulnerability", "exploit", "breach", "incident"],
-    "privacy": ["privacy", "personal data", "user data", "data exposure", "surveillance"],
-    "regulatory": ["regulator", "regulatory", "fine", "penalty", "government", "antitrust", "compliance", "investigation"],
-    "legal": ["lawsuit", "court", "sued", "legal action", "copyright", "copyright infringement", "class action"],
-    "operational": ["outage", "downtime", "service disruption", "disruption", "incident", "availability"],
-    "safety": ["ai safety", "safety", "dangerous", "misuse", "harmful", "risk", "jailbreak"],
+    "security": [
+        "security", "hack", "hacked", "cyberattack", "cyber attack",
+        "vulnerability", "exploit", "breach", "data leak", "security flaw"
+    ],
+    "privacy": [
+        "privacy", "personal data", "user data", "data exposure",
+        "surveillance", "data leak", "privacy violation"
+    ],
+    "regulatory": [
+        "regulator", "regulatory", "fine", "penalty", "government",
+        "antitrust", "compliance", "investigation", "ban", "blocked"
+    ],
+    "legal": [
+        "lawsuit", "court", "sued", "legal action", "copyright",
+        "copyright infringement", "class action", "judge"
+    ],
+    "operational": [
+        "outage", "downtime", "service disruption", "disruption",
+        "unavailable", "down for", "incident", "availability"
+    ],
+    "safety": [
+        "ai safety", "safety concern", "safety concerns", "safety issue",
+        "dangerous", "misuse", "harmful", "risk", "jailbreak", "harm"
+    ],
 }
 
+# These phrases commonly describe normal product/business news rather than a risk event.
+POSITIVE_OR_NON_RISK = [
+    "introducing ", "introduces ", "announces new", "new feature",
+    "new model", "launches", "launch of", "product launch",
+    "partnership", "partners with", "funding", "investment",
+    "acquires", "acquisition", "raises $", "raises £", "raises €",
+    "research paper", "researchers met", "conference", "event",
+    "available now", "now available", "expands", "expansion",
+    "training ", "hiring ", "job openings"
+]
+
 def clean(text):
-    return re.sub(r"\\s+", " ", (text or "")).strip()
+    return re.sub(r"\s+", " ", (text or "")).strip()
 
 def classify(title):
     text = title.lower()
     for category, terms in RISK_TERMS.items():
         if any(term in text for term in terms):
             return category
-    return "operational"
+    return None
 
 def severity(title):
     text = title.lower()
-    high = ["breach", "hack", "cyberattack", "lawsuit", "fine", "penalty", "vulnerability", "exploit"]
-    medium = ["investigation", "regulatory", "outage", "privacy", "copyright", "safety"]
+    high = [
+        "breach", "hack", "hacked", "cyberattack", "data leak",
+        "lawsuit", "fine", "penalty", "vulnerability", "exploit",
+        "blocked", "ban"
+    ]
+    medium = [
+        "investigation", "regulatory", "outage", "privacy",
+        "copyright", "safety", "jailbreak", "court"
+    ]
     if any(x in text for x in high):
         return "high"
     if any(x in text for x in medium):
@@ -44,10 +81,13 @@ def fetch_feed(query):
     url = f"https://news.google.com/rss/search?q={encoded}&hl=en-US&gl=US&ceid=US:en"
     request = urllib.request.Request(
         url,
-        headers={"User-Agent": "AI-Risk-Radar/1.0"}
+        headers={"User-Agent": "AI-Risk-Radar/1.1"}
     )
     with urllib.request.urlopen(request, timeout=20) as response:
         return response.read()
+
+def stable_id(link):
+    return hashlib.sha256(link.encode("utf-8")).hexdigest()[:20]
 
 def main():
     with open(PLATFORMS_FILE, encoding="utf-8") as f:
@@ -72,7 +112,8 @@ def main():
 
         query = (
             f'"{name}" "{company}" '
-            '(security OR privacy OR breach OR lawsuit OR regulatory OR outage OR safety)'
+            '(security OR privacy OR breach OR lawsuit OR regulatory '
+            'OR outage OR safety OR vulnerability OR copyright OR court)'
         )
 
         try:
@@ -81,7 +122,7 @@ def main():
             print(f"Feed error for {name}: {exc}")
             continue
 
-        for item in root.findall("./channel/item")[:5]:
+        for item in root.findall("./channel/item")[:8]:
             title = clean(item.findtext("title"))
             link = clean(item.findtext("link"))
             pub_date = clean(item.findtext("pubDate"))
@@ -89,15 +130,36 @@ def main():
             if not title or not link or link in known or title in known:
                 continue
 
+            title_lower = title.lower()
             category = classify(title)
+
+            # Do not put normal product/business announcements into the risk queue.
+            if category is None:
+                continue
+
+            # A positive/non-risk phrase is ignored unless the same headline has
+            # a concrete risk signal such as breach, lawsuit, outage, etc.
+            if any(phrase in title_lower for phrase in POSITIVE_OR_NON_RISK):
+                strong_risk = any(
+                    term in title_lower
+                    for terms in RISK_TERMS.values()
+                    for term in terms
+                    if len(term) >= 6
+                )
+                if not strong_risk:
+                    continue
+
             item_record = {
-                "id": str(abs(hash(link))),
+                "id": stable_id(link),
                 "platform": name,
                 "company": company,
                 "type": category,
                 "severity": severity(title),
                 "headline": title,
-                "summary": "Unverified discovery from a public news feed. Manual verification required before publication.",
+                "summary": (
+                    "Unverified discovery from a public news feed. "
+                    "Manual verification required before publication."
+                ),
                 "source": "Google News RSS",
                 "url": link,
                 "date": pub_date,
@@ -114,7 +176,7 @@ def main():
         json.dump(pending, f, indent=2, ensure_ascii=False)
         f.write("\n")
 
-    print(f"Added {len(new_items)} new items to the pending review queue.")
+    print(f"Added {len(new_items)} new risk candidates to the pending review queue.")
 
 if __name__ == "__main__":
     main()
