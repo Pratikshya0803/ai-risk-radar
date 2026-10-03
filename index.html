@@ -724,80 +724,11 @@
       </div>
 
 
-      <div class="platform-grid">
-
-        <div class="platform">
-          <div class="platform-icon">O</div>
-          <h3>ChatGPT</h3>
-          <p>OpenAI</p>
+      <div id="platform-grid" class="platform-grid">
+        <div class="empty">
+          <strong>Loading platform directory…</strong>
+          Connecting to the AI platform database.
         </div>
-
-        <div class="platform">
-          <div class="platform-icon">C</div>
-          <h3>Claude</h3>
-          <p>Anthropic</p>
-        </div>
-
-        <div class="platform">
-          <div class="platform-icon">G</div>
-          <h3>Gemini</h3>
-          <p>Google</p>
-        </div>
-
-        <div class="platform">
-          <div class="platform-icon">M</div>
-          <h3>Copilot</h3>
-          <p>Microsoft</p>
-        </div>
-
-        <div class="platform">
-          <div class="platform-icon">GH</div>
-          <h3>GitHub Copilot</h3>
-          <p>GitHub</p>
-        </div>
-
-        <div class="platform">
-          <div class="platform-icon">P</div>
-          <h3>Perplexity</h3>
-          <p>Perplexity AI</p>
-        </div>
-
-        <div class="platform">
-          <div class="platform-icon">L</div>
-          <h3>Llama</h3>
-          <p>Meta</p>
-        </div>
-
-        <div class="platform">
-          <div class="platform-icon">M</div>
-          <h3>Mistral</h3>
-          <p>Mistral AI</p>
-        </div>
-
-        <div class="platform">
-          <div class="platform-icon">C</div>
-          <h3>Cohere</h3>
-          <p>Cohere</p>
-        </div>
-
-        <div class="platform">
-          <div class="platform-icon">H</div>
-          <h3>Hugging Face</h3>
-          <p>AI Platform</p>
-        </div>
-
-        <div class="platform">
-          <div class="platform-icon">A</div>
-          <h3>AWS Bedrock</h3>
-          <p>Amazon Web Services</p>
-        </div>
-
-        <div class="platform">
-          <div class="platform-icon">V</div>
-          <h3>Vertex AI</h3>
-          <p>Google Cloud</p>
-        </div>
-
       </div>
 
     </div>
@@ -910,26 +841,119 @@
 
 
   <script>
+    let allNews = [];
 
-    function filterNews(category, button) {
+    async function loadPlatforms() {
+      const container = document.getElementById("platform-grid");
 
-      document
-        .querySelectorAll(".filter")
-        .forEach(function(btn) {
-          btn.classList.remove("active");
-        });
+      try {
+        const response = await fetch("data/platforms.json");
+        if (!response.ok) throw new Error("Platform database unavailable");
 
-      button.classList.add("active");
+        const platforms = await response.json();
 
-      /*
-        News filtering will be connected to
-        approved-news.json in the next step.
-      */
+        container.innerHTML = platforms.map(platform => {
+          const initial = platform.name
+            .split(" ")
+            .map(word => word[0])
+            .join("")
+            .slice(0, 2)
+            .toUpperCase();
 
-      console.log("Selected category:", category);
+          return `
+            <a class="platform" href="${platform.website}" target="_blank" rel="noopener noreferrer">
+              <div class="platform-icon">${initial}</div>
+              <h3>${platform.name}</h3>
+              <p>${platform.company} · ${platform.category}</p>
+            </a>
+          `;
+        }).join("");
+
+        const count = document.querySelector(".risk-stat strong");
+        if (count) count.textContent = platforms.length;
+
+      } catch (error) {
+        container.innerHTML = `
+          <div class="empty">
+            <strong>Platform database could not be loaded.</strong>
+            Please refresh the page.
+          </div>
+        `;
+        console.error(error);
+      }
     }
 
-  </script>
+    async function loadNews() {
+      const container = document.getElementById("news-container");
 
-</body>
+      try {
+        const response = await fetch("data/approved-news.json");
+        if (!response.ok) throw new Error("News database unavailable");
+
+        allNews = await response.json();
+        renderNews("all");
+      } catch (error) {
+        container.innerHTML = `
+          <div class="empty">
+            <strong>No verified risk events yet.</strong>
+            Your approved risk intelligence will appear here.
+            <br><br>
+            News will only be published after manual verification.
+          </div>
+        `;
+      }
+    }
+
+    function renderNews(category) {
+      const container = document.getElementById("news-container");
+
+      const filtered = category === "all"
+        ? allNews
+        : allNews.filter(item => String(item.type || "").toLowerCase() === category);
+
+      if (!filtered.length) {
+        container.innerHTML = `
+          <div class="empty">
+            <strong>No verified events in this category.</strong>
+            Approved intelligence will appear here when available.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="news-grid">
+          ${filtered.map(item => `
+            <article class="news-card">
+              <div class="news-top">
+                <span class="tag">${item.type || "Risk"}</span>
+                <span class="severity ${String(item.severity || "medium").toLowerCase()}">
+                  ${item.severity || "Medium"} risk
+                </span>
+              </div>
+              <h3>${item.headline || "Untitled risk event"}</h3>
+              <p>${item.summary || ""}</p>
+              <div class="news-meta">
+                <span>${item.platform || "AI ecosystem"}</span>
+                <span>${item.date || ""}</span>
+              </div>
+              ${item.url ? `<div style="margin-top:14px;"><a href="${item.url}" target="_blank" rel="noopener noreferrer" style="color:#8ab4ff;font-size:13px;font-weight:700;">View original source →</a></div>` : ""}
+            </article>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function filterNews(category, button) {
+      document.querySelectorAll(".filter").forEach(function(btn) {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+      renderNews(category);
+    }
+
+    loadPlatforms();
+    loadNews();
+  </script>
           </html>
