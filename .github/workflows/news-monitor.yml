@@ -1,0 +1,34 @@
+name: AI Risk Radar News Monitor
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect-news:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Collect public risk-news candidates
+        run: python scripts/fetch_news.py
+
+      - name: Save pending review queue
+        run: |
+          git config user.name "AI Risk Radar Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- data/pending-news.json; then
+            echo "No new candidates found."
+            exit 0
+          fi
+
+          git add data/pending-news.json
+          git commit -m "Update pending AI risk news"
+          git push
