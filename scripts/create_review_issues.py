@@ -67,9 +67,11 @@ def main():
 ### ⚡ Quick review
 This story was automatically discovered and classified. **It has NOT been verified and must not be published until manually checked.**
 
-**Fastest option:** add a comment containing exactly **approve** or **reject**.
+**Fastest phone workflow:**
+- Comment **a** = approve
+- Comment **r** = reject
 
-You can also use the **approved** or **rejected** label if you prefer. The automation will process either method.
+You can also type **approve** or **reject**, or use the labels if you prefer.
 
 <!-- AIRR_ITEM_ID: {item["id"]} -->
 """
