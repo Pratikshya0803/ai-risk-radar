@@ -702,21 +702,5 @@
     "discovered_at": "2026-10-03T12:58:07.293588+00:00",
     "issue_number": 44,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/44"
-  },
-  {
-    "id": "181ec6f8483e83b23c38",
-    "platform": "Vertex AI",
-    "company": "Google Cloud",
-    "type": "security",
-    "severity": "high",
-    "headline": "Vertex AI Vulnerability Exposes Google Cloud Data and Private Artifacts - The Hacker News",
-    "summary": "Unverified discovery from a public news feed. Manual verification required before publication.",
-    "source": "Google News RSS",
-    "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQRmtnQ0NMMjZzQklYdHZpZWwxUzhjSXJoVFhrMjVQdE50a3pzbkoxZng5cjlWY0VnQVhfSThTS2tPV0V6bGlBYThjcmZQckdFcldlRzJ6YVhDMTlWbGJUX0pSVGdvSmpDcEE2QzY5OEMwRjc3ZG1aZDhsT2dKRU9obUlqTQ?oc=5",
-    "date": "Tue, 31 Mar 2026 07:00:00 GMT",
-    "status": "UNVERIFIED",
-    "discovered_at": "2026-10-03T12:58:07.293607+00:00",
-    "issue_number": 45,
-    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/45"
   }
 ]
