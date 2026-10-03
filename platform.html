@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Risk Radar | Platform Risk Profile</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Arial,sans-serif;background:#080b12;color:#f5f7fb;line-height:1.6}
+a{color:inherit;text-decoration:none}.container{width:min(1050px,92%);margin:auto}
+nav{border-bottom:1px solid #202634;background:#080b12;position:sticky;top:0;z-index:5}
+.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:800}.logo span{color:#ff4d5a}
+.back{color:#8ab4ff;font-size:13px;font-weight:700}
+.hero{padding:55px 0 35px;background:radial-gradient(circle at 15% 10%,rgba(255,70,90,.12),transparent 35%),radial-gradient(circle at 85% 20%,rgba(80,120,255,.1),transparent 35%)}
+.eyebrow{color:#ff6570;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px}
+h1{font-size:clamp(34px,6vw,58px);line-height:1.05;letter-spacing:-2px;margin:8px 0}
+.sub{color:#aeb6c7;font-size:16px}
+.score-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:28px}
+.card{background:#101520;border:1px solid #232b3a;border-radius:16px;padding:24px}
+.score{font-size:58px;font-weight:900;line-height:1}
+.score-label{color:#8e98aa;margin-top:7px;font-size:13px}
+.meter{height:10px;background:#252c3a;border-radius:10px;overflow:hidden;margin:18px 0 10px}
+.fill{height:100%;background:#ff5b66;border-radius:10px}
+.note{color:#7f899b;font-size:12px}
+.stat{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #222936;color:#9da6b6}
+.stat strong{color:#f5f7fb}
+section{padding:38px 0}.heading{margin-bottom:18px}.heading h2{font-size:25px}.heading p{color:#7f899b;font-size:13px}
+.news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.news{background:#101520;border:1px solid #232b3a;border-radius:14px;padding:19px}
+.top{display:flex;justify-content:space-between;gap:10px;margin-bottom:12px}
+.tag{background:#24151a;color:#ff6974;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:800;text-transform:uppercase}
+.high{color:#ff5965}.medium{color:#f5c451}.low{color:#62d69b}
+.news h3{font-size:16px;line-height:1.4}.news p{color:#929bad;font-size:13px;margin-top:8px}
+.meta{color:#6f788a;font-size:11px;margin-top:13px;padding-top:11px;border-top:1px solid #222936}
+.source{display:inline-block;color:#8ab4ff;font-size:12px;font-weight:700;margin-top:11px}
+.empty{border:1px dashed #30394b;border-radius:14px;padding:35px;text-align:center;color:#8791a4;background:#0d121b}
+.empty strong{display:block;color:#dce1eb;margin-bottom:7px}
+.method{background:#0d121b;border:1px solid #242c3b;border-radius:14px;padding:20px;color:#858fa1;font-size:13px}
+footer{border-top:1px solid #202634;padding:28px 0;color:#6e7789;font-size:12px}
+@media(max-width:700px){.score-grid,.news-grid{grid-template-columns:1fr}.score{font-size:50px}}
+</style>
+</head>
+<body>
+<nav><div class="container nav"><a href="index.html" class="logo">AI <span>RISK</span> RADAR</a><a href="index.html#platforms" class="back">← All platforms</a></div></nav>
+<header class="hero"><div class="container">
+<div class="eyebrow">Platform Risk Profile</div>
+<h1 id="name">Loading…</h1><p class="sub" id="company"></p>
+<div class="score-grid">
+<div class="card"><div class="eyebrow">Radar score</div><div id="score" class="score">—</div><div id="scoreLabel" class="score-label">Calculating from verified evidence</div><div class="meter"><div id="fill" class="fill" style="width:0%"></div></div><p class="note">Higher score = lower verified risk exposure in this monitoring dataset. It is not a safety guarantee.</p></div>
+<div class="card"><div class="stat"><span>Verified risk stories</span><strong id="count">0</strong></div><div class="stat"><span>High severity</span><strong id="high">0</strong></div><div class="stat"><span>Medium severity</span><strong id="medium">0</strong></div><div class="stat"><span>Low severity</span><strong id="low">0</strong></div><div class="stat"><span>Risk categories observed</span><strong id="cats">0</strong></div></div>
+</div>
+</div></header>
+<section><div class="container"><div class="heading"><h2>🔴 Verified risk intelligence</h2><p>Only manually approved stories are included.</p></div><div id="news"></div></div></section>
+<section><div class="container"><div class="heading"><h2>How the score works</h2><p>Transparent, evidence-based monitoring rather than a claim of absolute safety.</p></div><div class="method">The Radar score starts at 100 and deducts points for verified risk events: <b>25</b> for high severity, <b>12</b> for medium, and <b>5</b> for low. Multiple events accumulate, with the score capped at 0. A platform with no verified events is shown as <b>Insufficient verified data</b> rather than receiving a misleading perfect score. This follows the general risk-assessment principle of separating severity from likelihood and documenting the evidence behind assessments. The score is a monitoring indicator, not a certification or prediction.</div></div></section>
+<footer><div class="container">AI Risk Radar • Human-reviewed publication • <a href="index.html">Back to dashboard</a></div></footer>
+<script>
+const id=new URLSearchParams(location.search).get("id");
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+async function run(){
+ try{
+  const [pr,nr]=await Promise.all([fetch("data/platforms.json"),fetch("data/approved-news.json")]);
+  const platforms=await pr.json(), all=await nr.json();
+  const p=platforms.find(x=>x.id===id);
+  if(!p){document.getElementById("name").textContent="Platform not found";return}
+  const news=all.filter(x=>String(x.platform).toLowerCase()===p.name.toLowerCase());
+  document.title="AI Risk Radar | "+p.name+" Risk Profile";
+  document.getElementById("name").textContent=p.name;
+  document.getElementById("company").textContent=p.company+" · "+p.category;
+  const counts={high:0,medium:0,low:0}; news.forEach(x=>{const s=String(x.severity||"low").toLowerCase();if(counts[s]!==undefined)counts[s]++});
+  document.getElementById("count").textContent=news.length;document.getElementById("high").textContent=counts.high;document.getElementById("medium").textContent=counts.medium;document.getElementById("low").textContent=counts.low;
+  document.getElementById("cats").textContent=new Set(news.map(x=>x.type).filter(Boolean)).size;
+  if(!news.length){
+   document.getElementById("score").textContent="N/A";document.getElementById("scoreLabel").textContent="Insufficient verified data";document.getElementById("fill").style.width="0%";
+   document.getElementById("news").innerHTML='<div class="empty"><strong>No verified risk stories for '+esc(p.name)+' yet.</strong>This does not mean the platform is risk-free; it means this Radar dataset does not yet have enough verified evidence to score it.</div>';
+   return;
+  }
+  const score=Math.max(0,100-(counts.high*25)-(counts.medium*12)-(counts.low*5));
+  document.getElementById("score").textContent=score+"/100";document.getElementById("scoreLabel").textContent=score>=75?"Lower verified risk exposure":score>=50?"Moderate verified risk exposure":"Higher verified risk exposure";document.getElementById("fill").style.width=score+"%";
+  document.getElementById("news").innerHTML='<div class="news-grid">'+news.slice().reverse().map(x=>'<article class="news"><div class="top"><span class="tag">'+esc(x.type||"risk")+'</span><span class="'+esc(String(x.severity||"low").toLowerCase())+'">'+esc(x.severity||"low")+' risk</span></div><h3>'+esc(x.headline)+'</h3><p>'+esc(x.summary||"Manually verified AI-risk story.")+'</p><div class="meta">'+esc(x.date||"")+'</div><a class="source" href="'+esc(x.url||"#")+'" target="_blank" rel="noopener noreferrer">View original source →</a></article>').join("")+'</div>';
+ }catch(e){document.getElementById("name").textContent="Unable to load profile";console.error(e)}
+}
+run();
+</script>
+</body></html>
