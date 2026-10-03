@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   collect-news:
@@ -19,16 +20,21 @@ jobs:
       - name: Collect public risk-news candidates
         run: python scripts/fetch_news.py
 
-      - name: Save pending review queue
+      - name: Create mobile review issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/create_review_issues.py
+
+      - name: Save review queue
         run: |
           git config user.name "AI Risk Radar Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           if git diff --quiet -- data/pending-news.json; then
-            echo "No new candidates found."
+            echo "No queue changes."
             exit 0
           fi
 
           git add data/pending-news.json
-          git commit -m "Update pending AI risk news"
+          git commit -m "Update AI risk review queue"
           git push
