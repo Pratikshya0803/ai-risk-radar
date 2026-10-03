@@ -377,6 +377,14 @@
       margin-bottom: 13px;
     }
 
+
+    .platform-link-note {
+      color: #8ab4ff !important;
+      font-size: 11px !important;
+      margin-top: 8px !important;
+      font-weight: 700;
+    }
+
     .platform h3 {
       font-size: 15px;
     }
@@ -861,10 +869,11 @@
             .toUpperCase();
 
           return `
-            <a class="platform" href="${platform.website}" target="_blank" rel="noopener noreferrer">
+            <a class="platform" href="platform.html?id=${platform.id}">
               <div class="platform-icon">${initial}</div>
               <h3>${platform.name}</h3>
               <p>${platform.company} · ${platform.category}</p>
+              <p class="platform-link-note">View risk profile →</p>
             </a>
           `;
         }).join("");
