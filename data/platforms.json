@@ -1,0 +1,177 @@
+[
+  {
+    "id": "chatgpt",
+    "name": "ChatGPT",
+    "company": "OpenAI",
+    "category": "LLM",
+    "website": "https://chatgpt.com/",
+    "monitoring": [
+      "Security",
+      "Privacy",
+      "Regulatory",
+      "Operational",
+      "AI Safety",
+      "Copyright/IP"
+    ]
+  },
+  {
+    "id": "claude",
+    "name": "Claude",
+    "company": "Anthropic",
+    "category": "LLM",
+    "website": "https://claude.ai/",
+    "monitoring": [
+      "Security",
+      "Privacy",
+      "Regulatory",
+      "Operational",
+      "AI Safety",
+      "Copyright/IP"
+    ]
+  },
+  {
+    "id": "gemini",
+    "name": "Gemini",
+    "company": "Google",
+    "category": "LLM",
+    "website": "https://gemini.google.com/",
+    "monitoring": [
+      "Security",
+      "Privacy",
+      "Regulatory",
+      "Operational",
+      "AI Safety",
+      "Copyright/IP"
+    ]
+  },
+  {
+    "id": "copilot",
+    "name": "Copilot",
+    "company": "Microsoft",
+    "category": "AI Assistant",
+    "website": "https://copilot.microsoft.com/",
+    "monitoring": [
+      "Security",
+      "Privacy",
+      "Regulatory",
+      "Operational",
+      "AI Safety",
+      "Copyright/IP"
+    ]
+  },
+  {
+    "id": "github-copilot",
+    "name": "GitHub Copilot",
+    "company": "GitHub",
+    "category": "Developer AI",
+    "website": "https://github.com/features/copilot",
+    "monitoring": [
+      "Security",
+      "Privacy",
+      "Regulatory",
+      "Operational",
+      "Copyright/IP"
+    ]
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity",
+    "company": "Perplexity AI",
+    "category": "AI Search",
+    "website": "https://www.perplexity.ai/",
+    "monitoring": [
+      "Security",
+      "Privacy",
+      "Regulatory",
+      "Operational",
+      "AI Safety",
+      "Copyright/IP"
+    ]
+  },
+  {
+    "id": "llama",
+    "name": "Llama",
+    "company": "Meta",
+    "category": "Open Model",
+    "website": "https://www.llama.com/",
+    "monitoring": [
+      "Security",
+      "Privacy",
+      "Regulatory",
+      "AI Safety",
+      "Copyright/IP"
+    ]
+  },
+  {
+    "id": "mistral",
+    "name": "Mistral",
+    "company": "Mistral AI",
+    "category": "LLM",
+    "website": "https://mistral.ai/",
+    "monitoring": [
+      "Security",
+      "Privacy",
+      "Regulatory",
+      "Operational",
+      "AI Safety",
+      "Copyright/IP"
+    ]
+  },
+  {
+    "id": "cohere",
+    "name": "Cohere",
+    "company": "Cohere",
+    "category": "Enterprise AI",
+    "website": "https://cohere.com/",
+    "monitoring": [
+      "Security",
+      "Privacy",
+      "Regulatory",
+      "Operational",
+      "AI Safety"
+    ]
+  },
+  {
+    "id": "hugging-face",
+    "name": "Hugging Face",
+    "company": "Hugging Face",
+    "category": "AI Platform",
+    "website": "https://huggingface.co/",
+    "monitoring": [
+      "Security",
+      "Privacy",
+      "Regulatory",
+      "Operational",
+      "AI Safety",
+      "Copyright/IP"
+    ]
+  },
+  {
+    "id": "aws-bedrock",
+    "name": "Amazon Bedrock",
+    "company": "Amazon Web Services",
+    "category": "Cloud AI",
+    "website": "https://aws.amazon.com/bedrock/",
+    "monitoring": [
+      "Security",
+      "Privacy",
+      "Regulatory",
+      "Operational",
+      "AI Safety"
+    ]
+  },
+  {
+    "id": "vertex-ai",
+    "name": "Vertex AI",
+    "company": "Google Cloud",
+    "category": "Cloud AI",
+    "website": "https://cloud.google.com/vertex-ai",
+    "monitoring": [
+      "Security",
+      "Privacy",
+      "Regulatory",
+      "Operational",
+      "AI Safety"
+    ]
+  }
+]
