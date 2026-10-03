@@ -59,7 +59,7 @@ def main():
         item["status"] = "VERIFIED"
         item["verified_at"] = datetime.now(timezone.utc).isoformat()
         item["verified_via"] = "Manual GitHub issue approval"
-        item["verification_note"] = "Manually reviewed and approved by the repository owner."
+        item["verification_note"] = "Manually reviewed and approved by the repository owner."\n        item["summary"] = "Manually verified AI-risk story. Review the original source for the full details."
         approved.append(item)
         print(f"Approved: {item['headline']}")
     else:
