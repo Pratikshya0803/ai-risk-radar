@@ -846,5 +846,53 @@
     "discovered_at": "2026-10-03T19:56:48.025485+00:00",
     "issue_number": 54,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/54"
+  },
+  {
+    "id": "56e067c65ab7d1d097ed",
+    "platform": "ChatGPT",
+    "company": "OpenAI",
+    "type": "safety",
+    "severity": "medium",
+    "headline": "OpenAI safety leader quits, warning AI company’s culture is ‘broken’ - The Guardian",
+    "summary": "Unverified discovery from a public news feed. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOcldEYVVROGhFOHl0UGVvVkEzTnZyWkRBRTVxWkZOeXphTkdqYkJ1dFFNOFFJNldDdVVRTE1KaGxaNUJmQWlBNVhocE9CSHNnMFE1WVZQb3lBRF9KSTZKNVFHMndMSGJOYVdHRzhIdEZXNGMtNml2clZCYUtKTk52TjlZTVRRWE1OVFdiMTBIOFdpeEp2RW5mT2RqaEp2UkFGLVZTLVZPSkdIMzE3blc5YzFMdTFsQQ?oc=5",
+    "date": "Sat, 03 Oct 2026 20:09:00 GMT",
+    "status": "UNVERIFIED",
+    "discovered_at": "2026-10-03T23:02:15.935194+00:00",
+    "issue_number": 55,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/55"
+  },
+  {
+    "id": "fd391afc2b3948bb5c85",
+    "platform": "ChatGPT",
+    "company": "OpenAI",
+    "type": "legal",
+    "severity": "high",
+    "headline": "Florida asks court to bar OpenAI from developing new models as part of child harm lawsuit - Reuters",
+    "summary": "Unverified discovery from a public news feed. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPUG9naTh0N0NqVC1Qa2xGLTZsaHd4dFMxVnpUYzFEZnJqbFQwVTN1ek4yZ3k5Uzh4M1lyVWdZeWJvSDJXLVVvUTM1eTFQak1XdWlrUFBBN082czBVR0h5XzJwLVFqUndKTmsyQUV5NnhzNGRlQnFMazJ1UFVGN1U0ZE9nSlpSbmxRNjdEU3pPekJ3YlNuTXhCaTlFa2YtbHFsd3J1TUhSVzFJMEE0VFBOT0poOVlmV1dS?oc=5",
+    "date": "Mon, 28 Sep 2026 17:13:17 GMT",
+    "status": "UNVERIFIED",
+    "discovered_at": "2026-10-03T23:02:15.935332+00:00",
+    "issue_number": 56,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/56"
+  },
+  {
+    "id": "576c070d2c69fa7bda07",
+    "platform": "Hugging Face",
+    "company": "Hugging Face",
+    "type": "security",
+    "severity": "high",
+    "headline": "OpenAI sued over Hugging Face breach - Mobile World Live",
+    "summary": "Unverified discovery from a public news feed. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQczZ3V1FTT3hnNW9OWXh6WkxMd2d4TFpSOVlLbTJlVC1MRk1hMHhhRjR4a0Q0STFHbmtCMUFpaUxHNEdiLTBEVGl1VmI3a082Smg1MG8xeDVHenhHZExMQm1TUkdleERvazNjcHdiLVhfejdqTWpJa3RiS2ZDMlNPTGNYS3Q?oc=5",
+    "date": "Thu, 01 Oct 2026 09:42:02 GMT",
+    "status": "UNVERIFIED",
+    "discovered_at": "2026-10-03T23:02:20.101567+00:00",
+    "issue_number": 57,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/57"
   }
 ]
