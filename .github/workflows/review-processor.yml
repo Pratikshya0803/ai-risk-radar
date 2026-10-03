@@ -1,0 +1,40 @@
+name: AI Risk Radar Review Processor
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  process-review:
+    if: github.event.label.name == 'approved' || github.event.label.name == 'rejected'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Process manual review
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ACTION_LABEL: ${{ github.event.label.name }}
+        run: python scripts/process_review.py
+
+      - name: Publish approved change
+        run: |
+          git config user.name "AI Risk Radar Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/pending-news.json data/approved-news.json
+          if git diff --cached --quiet; then
+            echo "No data changes."
+            exit 0
+          fi
+
+          git commit -m "Process manual AI risk review"
+          git push
