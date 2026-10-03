@@ -2,6 +2,7 @@
 import json
 import os
 import urllib.request
+import urllib.error
 from datetime import datetime, timezone
 
 PENDING_FILE = "data/pending-news.json"
@@ -28,7 +29,7 @@ def api(method, path, payload=None):
         return json.loads(raw.decode()) if raw else {}
 
 def main():
-    if COMMENT not in {"approve", "approved", "reject", "rejected"}:
+    if COMMENT not in {"a", "approve", "approved", "r", "reject", "rejected"}:
         print("Comment is not an exact review command. Ignoring.")
         return
 
@@ -55,7 +56,7 @@ def main():
 
     item = matches[0]
     pending = [x for x in pending if x.get("id") != item_id]
-    action = "approved" if COMMENT in {"approve", "approved"} else "rejected"
+    action = "approved" if COMMENT in {"a", "approve", "approved"} else "rejected"
 
     if action == "approved":
         item["status"] = "VERIFIED"
@@ -65,6 +66,16 @@ def main():
         item["summary"] = "Manually verified AI-risk story. Review the original source for the full details."
         approved.append(item)
 
+    final_label = "approved" if action == "approved" else "rejected"
+    api("POST", f"/repos/{REPO}/issues/{ISSUE_NUMBER}/labels", {"labels": [final_label]})
+    try:
+        api("DELETE", f"/repos/{REPO}/issues/{ISSUE_NUMBER}/labels/pending-review")
+    except urllib.error.HTTPError as exc:
+        if exc.code != 404:
+            raise
+    api("POST", f"/repos/{REPO}/issues/{ISSUE_NUMBER}/comments", {
+        "body": "Approved — published to the verified dataset." if action == "approved" else "Rejected — removed from the pending review queue."
+    })
     api("PATCH", f"/repos/{REPO}/issues/{ISSUE_NUMBER}", {
         "state": "closed",
         "state_reason": "completed"
