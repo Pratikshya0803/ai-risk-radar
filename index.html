@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AI Risk Radar | AI Risk Intelligence</title>
+
+  <meta name="description"
+        content="AI Risk Radar — continuously monitored intelligence on security, privacy, regulatory, operational and AI safety risks across major AI platforms.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: #080b12;
+      color: #f5f7fb;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      border-bottom: 1px solid #202634;
+      background: rgba(8,11,18,0.96);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: #ff4d5a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      color: #aeb6c7;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .status {
+      font-size: 12px;
+      color: #67e8a5;
+      border: 1px solid #245c43;
+      background: #0d2118;
+      padding: 7px 11px;
+      border-radius: 30px;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 85px 0 65px;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(255,70,90,0.13), transparent 35%),
+        radial-gradient(circle at 85% 20%, rgba(80,120,255,0.12), transparent 35%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: #ff6570;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -3px;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      color: #aeb6c7;
+      font-size: 18px;
+      max-width: 680px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 1px solid #2c3445;
+      background: #111725;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .button.primary {
+      background: #ff4d5a;
+      color: white;
+      border-color: #ff4d5a;
+    }
+
+    /* RISK BOX */
+
+    .risk-box {
+      border: 1px solid #35242a;
+      background: linear-gradient(145deg, #12151d, #0d1017);
+      border-radius: 18px;
+      padding: 25px;
+    }
+
+    .risk-box-title {
+      color: #ff6671;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .risk-stat {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #222936;
+      padding: 13px 0;
+      color: #adb5c5;
+    }
+
+    .risk-stat strong {
+      color: white;
+    }
+
+    /* SECTION */
+
+    section {
+      padding: 65px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 28px;
+      gap: 20px;
+    }
+
+    .section-heading h2 {
+      font-size: 30px;
+      letter-spacing: -1px;
+    }
+
+    .section-heading p {
+      color: #8993a6;
+      font-size: 14px;
+    }
+
+    /* FILTER */
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .filter {
+      flex: 0 0 auto;
+      border: 1px solid #293142;
+      background: #101520;
+      color: #aeb6c7;
+      padding: 9px 14px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .filter.active {
+      background: #ff4d5a;
+      border-color: #ff4d5a;
+      color: white;
+    }
+
+    /* NEWS */
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .news-card {
+      background: #101520;
+      border: 1px solid #232b3a;
+      border-radius: 15px;
+      padding: 22px;
+      transition: 0.2s;
+    }
+
+    .news-card:hover {
+      border-color: #47536a;
+      transform: translateY(-2px);
+    }
+
+    .news-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 6px;
+      background: #24151a;
+      color: #ff6974;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .severity {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .high {
+      color: #ff5965;
+    }
+
+    .medium {
+      color: #f5c451;
+    }
+
+    .low {
+      color: #62d69b;
+    }
+
+    .news-card h3 {
+      font-size: 18px;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .news-card p {
+      color: #929bad;
+      font-size: 14px;
+    }
+
+    .news-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 18px;
+      padding-top: 15px;
+      border-top: 1px solid #222936;
+      color: #6f788a;
+      font-size: 12px;
+    }
+
+    /* EMPTY STATE */
+
+    .empty {
+      border: 1px dashed #30394b;
+      border-radius: 15px;
+      padding: 45px 25px;
+      text-align: center;
+      color: #8791a4;
+      background: #0d121b;
+    }
+
+    .empty strong {
+      display: block;
+      color: #dce1eb;
+      margin-bottom: 7px;
+      font-size: 17px;
+    }
+
+    /* POSITIVE */
+
+    .positive-section {
+      background: #0b1110;
+      border-top: 1px solid #1e2a25;
+      border-bottom: 1px solid #1e2a25;
+    }
+
+    .positive-card {
+      background: #0e1814;
+      border: 1px solid #20392d;
+      border-radius: 15px;
+      padding: 22px;
+    }
+
+    .positive-tag {
+      color: #66d99b;
+      background: #11271d;
+      padding: 5px 9px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    /* PLATFORMS */
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+    }
+
+    .platform {
+      background: #101520;
+      border: 1px solid #232b3a;
+      border-radius: 13px;
+      padding: 18px;
+      transition: 0.2s;
+    }
+
+    .platform:hover {
+      border-color: #4a566e;
+      transform: translateY(-2px);
+    }
+
+    .platform-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: #1c2433;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 13px;
+    }
+
+    .platform h3 {
+      font-size: 15px;
+    }
+
+    .platform p {
+      color: #747e91;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    /* HOW IT WORKS */
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .workflow-card {
+      padding: 23px;
+      border: 1px solid #242c3b;
+      border-radius: 14px;
+      background: #0e131c;
+    }
+
+    .workflow-number {
+      color: #ff5b66;
+      font-weight: 900;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .workflow-card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .workflow-card p {
+      color: #858fa1;
+      font-size: 13px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid #202634;
+      padding: 35px 0;
+      color: #6e7789;
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 60px 0 45px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .platform-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .workflow {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 6px;
+      }
+
+      .footer-inner {
+        display: block;
+      }
+    }
+
+    @media (max-width: 430px) {
+
+      .status {
+        display: none;
+      }
+
+      .platform-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      section {
+        padding: 50px 0;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <div class="container nav-inner">
+
+      <a href="#" class="logo">
+        AI <span>RISK</span> RADAR
+      </a>
+
+      <div class="nav-links">
+        <a href="#risks">Risk Intelligence</a>
+        <a href="#platforms">Platforms</a>
+        <a href="#positive">Developments</a>
+        <a href="#methodology">Methodology</a>
+      </div>
+
+      <div class="status">
+        ● Monitoring
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <header class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <div class="eyebrow">
+          AI Risk Intelligence
+        </div>
+
+        <h1>
+          Know the risks<br>
+          behind AI.
+        </h1>
+
+        <p>
+          Continuously monitored intelligence on security,
+          privacy, regulatory, operational and AI safety
+          developments across the AI ecosystem.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="#risks" class="button primary">
+            Explore Risk Intelligence
+          </a>
+
+          <a href="#platforms" class="button">
+            Explore Platforms
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="risk-box">
+
+        <div class="risk-box-title">
+          RISK INTELLIGENCE
+        </div>
+
+        <div class="risk-stat">
+          <span>Platforms monitored</span>
+          <strong>12</strong>
+        </div>
+
+        <div class="risk-stat">
+          <span>Risk categories</span>
+          <strong>8</strong>
+        </div>
+
+        <div class="risk-stat">
+          <span>Verification</span>
+          <strong>Manual</strong>
+        </div>
+
+        <div class="risk-stat">
+          <span>Publication</span>
+          <strong>Reviewed</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- RISK INTELLIGENCE -->
+
+  <section id="risks">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>🔴 Live AI Risk Intelligence</h2>
+          <p>Verified risk developments across major AI platforms.</p>
+        </div>
+
+        <p>Continuously monitored</p>
+
+      </div>
+
+
+      <div class="filters">
+
+        <button class="filter active" onclick="filterNews('all', this)">
+          All
+        </button>
+
+        <button class="filter" onclick="filterNews('security', this)">
+          Security
+        </button>
+
+        <button class="filter" onclick="filterNews('privacy', this)">
+          Privacy
+        </button>
+
+        <button class="filter" onclick="filterNews('regulatory', this)">
+          Regulatory
+        </button>
+
+        <button class="filter" onclick="filterNews('legal', this)">
+          Legal
+        </button>
+
+        <button class="filter" onclick="filterNews('operational', this)">
+          Operational
+        </button>
+
+        <button class="filter" onclick="filterNews('safety', this)">
+          AI Safety
+        </button>
+
+      </div>
+
+
+      <div id="news-container">
+
+        <div class="empty">
+
+          <strong>No verified risk events yet.</strong>
+
+          Your approved risk intelligence will appear here.
+
+          <br><br>
+
+          News will only be published after manual verification.
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- POSITIVE DEVELOPMENTS -->
+
+  <section id="positive" class="positive-section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>🟢 Positive Developments</h2>
+          <p>Security improvements, partnerships, research and product developments.</p>
+        </div>
+
+      </div>
+
+
+      <div class="positive-card">
+
+        <span class="positive-tag">
+          Positive Intelligence
+        </span>
+
+        <h3>
+          Verified positive developments will appear here.
+        </h3>
+
+        <p style="margin-top:10px;color:#82908a;font-size:14px;">
+          This section provides balance by tracking developments
+          such as security improvements, research, investments,
+          partnerships and product launches.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PLATFORMS -->
+
+  <section id="platforms">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>🤖 AI Platform Directory</h2>
+          <p>Platforms included in the AI Risk Radar monitoring universe.</p>
+        </div>
+
+      </div>
+
+
+      <div class="platform-grid">
+
+        <div class="platform">
+          <div class="platform-icon">O</div>
+          <h3>ChatGPT</h3>
+          <p>OpenAI</p>
+        </div>
+
+        <div class="platform">
+          <div class="platform-icon">C</div>
+          <h3>Claude</h3>
+          <p>Anthropic</p>
+        </div>
+
+        <div class="platform">
+          <div class="platform-icon">G</div>
+          <h3>Gemini</h3>
+          <p>Google</p>
+        </div>
+
+        <div class="platform">
+          <div class="platform-icon">M</div>
+          <h3>Copilot</h3>
+          <p>Microsoft</p>
+        </div>
+
+        <div class="platform">
+          <div class="platform-icon">GH</div>
+          <h3>GitHub Copilot</h3>
+          <p>GitHub</p>
+        </div>
+
+        <div class="platform">
+          <div class="platform-icon">P</div>
+          <h3>Perplexity</h3>
+          <p>Perplexity AI</p>
+        </div>
+
+        <div class="platform">
+          <div class="platform-icon">L</div>
+          <h3>Llama</h3>
+          <p>Meta</p>
+        </div>
+
+        <div class="platform">
+          <div class="platform-icon">M</div>
+          <h3>Mistral</h3>
+          <p>Mistral AI</p>
+        </div>
+
+        <div class="platform">
+          <div class="platform-icon">C</div>
+          <h3>Cohere</h3>
+          <p>Cohere</p>
+        </div>
+
+        <div class="platform">
+          <div class="platform-icon">H</div>
+          <h3>Hugging Face</h3>
+          <p>AI Platform</p>
+        </div>
+
+        <div class="platform">
+          <div class="platform-icon">A</div>
+          <h3>AWS Bedrock</h3>
+          <p>Amazon Web Services</p>
+        </div>
+
+        <div class="platform">
+          <div class="platform-icon">V</div>
+          <h3>Vertex AI</h3>
+          <p>Google Cloud</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- WORKFLOW -->
+
+  <section id="methodology">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>How AI Risk Radar Works</h2>
+          <p>Automated discovery. Human verification. Controlled publication.</p>
+        </div>
+
+      </div>
+
+
+      <div class="workflow">
+
+        <div class="workflow-card">
+
+          <div class="workflow-number">01</div>
+
+          <h3>Monitor</h3>
+
+          <p>
+            News, security advisories, regulatory developments
+            and other public sources are continuously monitored.
+          </p>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+          <div class="workflow-number">02</div>
+
+          <h3>Identify</h3>
+
+          <p>
+            Relevant stories are identified and mapped to
+            AI platforms and risk categories.
+          </p>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+          <div class="workflow-number">03</div>
+
+          <h3>Verify</h3>
+
+          <p>
+            Every potential story enters a pending queue
+            for manual verification.
+          </p>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+          <div class="workflow-number">04</div>
+
+          <h3>Publish</h3>
+
+          <p>
+            Only approved stories become visible on
+            the public AI Risk Radar website.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div>
+        <strong style="color:#dfe4ed;">
+          AI Risk Radar
+        </strong>
+        <br>
+        AI risk intelligence and monitoring.
+      </div>
+
+      <div>
+        Independent information project •
+        Human-reviewed publication
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    function filterNews(category, button) {
+
+      document
+        .querySelectorAll(".filter")
+        .forEach(function(btn) {
+          btn.classList.remove("active");
+        });
+
+      button.classList.add("active");
+
+      /*
+        News filtering will be connected to
+        approved-news.json in the next step.
+      */
+
+      console.log("Selected category:", category);
+    }
+
+  </script>
+
+</body>
+          </html>
