@@ -64,11 +64,12 @@ def main():
 ### Source
 {item["url"]}
 
-### Review
+### ⚡ Quick review
 This story was automatically discovered and classified. **It has NOT been verified and must not be published until manually checked.**
 
-- Add the **approved** label if you verify that this is a relevant, factual AI-risk story.
-- Add the **rejected** label if it is irrelevant, misleading, duplicate, or not actually a risk event.
+**Fastest option:** add a comment containing exactly **approve** or **reject**.
+
+You can also use the **approved** or **rejected** label if you prefer. The automation will process either method.
 
 <!-- AIRR_ITEM_ID: {item["id"]} -->
 """
