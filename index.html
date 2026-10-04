@@ -221,6 +221,16 @@
       color: white;
     }
 
+    .high-alert-note {
+      border: 1px solid #3b2025;
+      background: #130f14;
+      color: #9da7b9;
+      border-radius: 12px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+
     /* NEWS */
 
     .news-grid {
@@ -614,45 +624,17 @@
       <div class="section-heading">
 
         <div>
-          <h2>🔴 Live AI Risk Intelligence</h2>
-          <p>Verified risk developments across major AI platforms.</p>
+          <h2>🔴 High Alert News</h2>
+          <p>Top 5 verified high-severity developments across monitored AI platforms.</p>
         </div>
 
-        <p>Continuously monitored</p>
+        <p>Human verified • High severity</p>
 
       </div>
 
 
-      <div class="filters">
-
-        <button class="filter active" onclick="filterNews('all', this)">
-          All
-        </button>
-
-        <button class="filter" onclick="filterNews('security', this)">
-          Security
-        </button>
-
-        <button class="filter" onclick="filterNews('privacy', this)">
-          Privacy
-        </button>
-
-        <button class="filter" onclick="filterNews('regulatory', this)">
-          Regulatory
-        </button>
-
-        <button class="filter" onclick="filterNews('legal', this)">
-          Legal
-        </button>
-
-        <button class="filter" onclick="filterNews('operational', this)">
-          Operational
-        </button>
-
-        <button class="filter" onclick="filterNews('safety', this)">
-          AI Safety
-        </button>
-
+      <div class="high-alert-note">
+        Showing only the five most recent verified high-severity events. Other verified stories remain available on platform risk profiles.
       </div>
 
 
@@ -899,13 +881,16 @@
         const response = await fetch("data/approved-news.json?v=" + Date.now(), { cache: "no-store" });
         if (!response.ok) throw new Error("News database unavailable");
 
-        allNews = (await response.json()).filter(item => String(item.status || "VERIFIED").toUpperCase() === "VERIFIED");
-        renderNews("all");
+        allNews = (await response.json()).filter(
+          item => String(item.status || "VERIFIED").toUpperCase() === "VERIFIED"
+        );
+
+        renderHighAlerts();
       } catch (error) {
         container.innerHTML = `
           <div class="empty">
-            <strong>No verified risk events yet.</strong>
-            Your approved risk intelligence will appear here.
+            <strong>No verified high-alert events yet.</strong>
+            Approved high-severity intelligence will appear here.
             <br><br>
             News will only be published after manual verification.
           </div>
@@ -913,18 +898,23 @@
       }
     }
 
-    function renderNews(category) {
+    function renderHighAlerts() {
       const container = document.getElementById("news-container");
 
-      const filtered = category === "all"
-        ? allNews
-        : allNews.filter(item => String(item.type || "").toLowerCase() === category);
+      const highAlerts = allNews
+        .filter(item => String(item.severity || "").toLowerCase() === "high")
+        .sort((a, b) => {
+          const aTime = Date.parse(a.date || "") || 0;
+          const bTime = Date.parse(b.date || "") || 0;
+          return bTime - aTime;
+        })
+        .slice(0, 5);
 
-      if (!filtered.length) {
+      if (!highAlerts.length) {
         container.innerHTML = `
           <div class="empty">
-            <strong>No verified events in this category.</strong>
-            Approved intelligence will appear here when available.
+            <strong>No verified high-alert events yet.</strong>
+            Approved high-severity intelligence will appear here when available.
           </div>
         `;
         return;
@@ -932,16 +922,14 @@
 
       container.innerHTML = `
         <div class="news-grid">
-          ${filtered.map(item => `
+          ${highAlerts.map(item => `
             <article class="news-card">
               <div class="news-top">
                 <span class="tag">${item.type || "Risk"}</span>
-                <span class="severity ${String(item.severity || "medium").toLowerCase()}">
-                  ${item.severity || "Medium"} risk
-                </span>
+                <span class="severity high">HIGH ALERT</span>
               </div>
               <h3>${item.headline || "Untitled risk event"}</h3>
-              <p>${item.summary || ""}</p>
+              <p>${item.summary || "Manually verified high-severity AI risk development. Review the original source for full details."}</p>
               <div class="news-meta">
                 <span>${item.platform || "AI ecosystem"}</span>
                 <span>${item.date || ""}</span>
@@ -951,15 +939,6 @@
           `).join("")}
         </div>
       `;
-    }
-
-    function filterNews(category, button) {
-      document.querySelectorAll(".filter").forEach(function(btn) {
-        btn.classList.remove("active");
-      });
-
-      button.classList.add("active");
-      renderNews(category);
     }
 
     loadPlatforms();
