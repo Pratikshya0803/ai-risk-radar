@@ -894,5 +894,21 @@
     "discovered_at": "2026-10-03T23:02:20.101567+00:00",
     "issue_number": 57,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/57"
+  },
+  {
+    "id": "57927530d8b389f782e9",
+    "platform": "Cohere",
+    "company": "Cohere",
+    "type": "security",
+    "severity": "low",
+    "headline": "Bell Cyber and Cohere deploy sovereign AI for Canadian cybersecurity operations - telecomtv.com",
+    "summary": "Unverified discovery from a public news feed. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZGZrb0l2N1RMWVlfQzhxSFJEaWh5UTJCNVFOSlBJVnBaQWIzYlg4ZHBqZThNQVZ0dFc0N1NjNVBhbi13WWs5cXczN2ZPR2FfWU9DX1pHekxnNkVCbHpOZDRVUDZmU1owXzR1NUxaLU1vN0VIWDJCeFJoLUladWczOFlOd05SeUtjNnhLNVhEMDhXelF2UElRaVhncGlvandmaUUwMTNiNUhEcmtWR2RNOFJaN2F1TFIzeGFreWtzSmTSAcYBQVVfeXFMUEUzeE1KbjB4SFVyRVhIU1ctX2dVTzFIcGRnNXVPSXFkYXl5UnBlR19zSG00eHFTblVjeHE5UkozMTFuR3pMUDVDeEU2Y0FXaXhVcFVCMkt0UVNQQU40ZHZOTGdXV2hnRHRsNjVZSEd2cmswTnltd2M3X2JsSk1EcmMtcjlKMHI3SmZkNTBzMUZ0NTRPNDNzZlY0ZjJvbXh4NWJxZ2thOVJnNXVkd0xsME8xbzc0UDdsck1HeEJSenJ1dHgtR2Zn?oc=5",
+    "date": "Fri, 18 Sep 2026 07:00:00 GMT",
+    "status": "UNVERIFIED",
+    "discovered_at": "2026-10-04T02:37:13.341966+00:00",
+    "issue_number": 58,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/58"
   }
 ]
