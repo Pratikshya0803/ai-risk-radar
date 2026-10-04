@@ -844,6 +844,34 @@
   <script>
     let allNews = [];
 
+
+    function cleanHeadline(headline) {
+      const text = String(headline || "Untitled risk event").trim();
+      const suffixes = [
+        " - ABC News - Breaking News, Latest News and Videos",
+        " - ABC News",
+        " - Mobile World Live",
+        " - WIRED",
+        " - Reuters",
+        " - CNN Business - CNN",
+        " - CNN",
+        " - TradingView",
+        " - The Guardian",
+        " - The Washington Post",
+        " - NPR",
+        " - Variety",
+        " - Ars Technica",
+        " - The Hacker News",
+        " - wiz.io",
+        " - FinLaw",
+        " - Benzinga"
+      ];
+      for (const suffix of suffixes) {
+        if (text.endsWith(suffix)) return text.slice(0, -suffix.length).trim();
+      }
+      return text;
+    }
+
     async function loadPlatforms() {
       const container = document.getElementById("platform-grid");
 
@@ -940,7 +968,7 @@
                 <span class="tag">${item.type || "Risk"}</span>
                 <span class="severity high">HIGH ALERT</span>
               </div>
-              <h3>${item.headline || "Untitled risk event"}</h3>
+              <h3>${cleanHeadline(item.headline)}</h3>
               <p>${item.summary || "Manually verified high-severity AI risk development. Review the original source for full details."}</p>
               <div class="news-meta">
                 <span>${item.platform || "AI ecosystem"}</span>
