@@ -89,7 +89,7 @@ async function run(){
   }
   const score=Math.max(0,100-(counts.high*15)-(counts.medium*6)-(counts.low*2));
   document.getElementById("score").textContent=score+"/100";document.getElementById("scoreLabel").textContent=score>=75?"Lower verified risk exposure":score>=50?"Moderate verified risk exposure":"Higher verified risk exposure";document.getElementById("fill").style.width=score+"%";
-  document.getElementById("news").innerHTML='<div class="news-grid">'+news.slice().reverse().map(x=>'<article class="news"><div class="top"><span class="tag">'+esc(x.type||"risk")+'</span><span class="'+esc(String(x.severity||"low").toLowerCase())+'">'+esc(x.severity||"low")+' risk</span></div><h3>'+esc(cleanHeadline(x.headline))+'</h3><p>'+esc(x.summary||"Manually verified AI-risk story.")+'</p><div class="meta">'+esc(x.date||"")+'</div><a class="source" href="'+esc(x.url||"#")+'" target="_blank" rel="noopener noreferrer">View original source →</a></article>').join("")+'</div>';
+  document.getElementById("news").innerHTML='<div class="news-grid">'+news.slice().reverse().map(x=>'<article class="news"><div class="top"><span class="tag">'+esc(x.type||"risk")+'</span><span class="'+esc(String(x.severity||"low").toLowerCase())+'">'+esc(x.severity||"low")+' risk</span></div><h3>'+esc(cleanHeadline(x.headline))+'</h3><div class="meta">'+esc(x.date||"")+'</div><a class="source" href="'+esc(x.url||"#")+'" target="_blank" rel="noopener noreferrer">View original source →</a></article>').join("")+'</div>';
  }catch(e){document.getElementById("name").textContent="Unable to load profile";console.error(e)}
 }
 run();
