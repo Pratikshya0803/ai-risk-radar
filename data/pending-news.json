@@ -494,5 +494,21 @@
     "discovered_at": "2026-10-04T09:46:34.041053+00:00",
     "issue_number": 60,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/60"
+  },
+  {
+    "id": "51329809a549766a5428",
+    "platform": "ChatGPT",
+    "company": "OpenAI",
+    "type": "safety",
+    "severity": "medium",
+    "headline": "OpenAI safety expert quits as he warns company behind ChatGPT is not taking enough care - LADbible",
+    "summary": "Unverified discovery from a public news feed. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPUGJTWkpZOGFwZWRJb0puYVhXbWN5VF9mTkRxbFozc080bXQ5QVRrU2xUWUtIT2t5Wk5ja1BIZHpXM082eTF0MFJoQXlSeldQRHR4OERwc0hzUnp5UTBNekpBMDJtOU9XS3NWeHdpbXhEdGFIRHZSTWplWjNyRnhYVnVwZlZtVmFFMWwwUzZyRDFTV1N0Qlo0RGI4VmVTaU1WbVZnTFdR?oc=5",
+    "date": "Sun, 04 Oct 2026 11:41:04 GMT",
+    "status": "UNVERIFIED",
+    "discovered_at": "2026-10-04T15:21:14.160651+00:00",
+    "issue_number": 61,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/61"
   }
 ]
