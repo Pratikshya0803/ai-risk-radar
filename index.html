@@ -512,15 +512,23 @@
     }
 
     .platform-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
       background: #1c2433;
+      border: 1px solid #2a3446;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
       margin-bottom: 13px;
+      overflow: hidden;
+    }
+
+    .platform-icon img {
+      width: 27px;
+      height: 27px;
+      object-fit: contain;
+      display: block;
     }
 
 
@@ -1022,16 +1030,28 @@
         const platforms = await response.json();
 
         container.innerHTML = platforms.map(platform => {
-          const initial = platform.name
-            .split(" ")
-            .map(word => word[0])
-            .join("")
-            .slice(0, 2)
-            .toUpperCase();
+          const logoMap = {
+            "chatgpt": "openai",
+            "claude": "anthropic",
+            "gemini": "google-gemini",
+            "copilot": "microsoftcopilot",
+            "github-copilot": "githubcopilot",
+            "perplexity": "perplexity",
+            "llama": "meta",
+            "mistral": "mistralai",
+            "cohere": "cohere",
+            "hugging-face": "huggingface",
+            "aws-bedrock": "amazonwebservices",
+            "vertex-ai": "googlecloud"
+          };
+
+          const logo = logoMap[platform.id];
 
           return `
             <a class="platform" href="platform.html?id=${platform.id}">
-              <div class="platform-icon">${initial}</div>
+              <div class="platform-icon">
+                <img src="https://cdn.simpleicons.org/${logo}/FFFFFF" alt="${platform.name} logo" loading="lazy">
+              </div>
               <h3>${platform.name}</h3>
               <p>${platform.company} · ${platform.category}</p>
               <p class="platform-link-note">View risk profile →</p>
