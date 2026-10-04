@@ -462,5 +462,37 @@
     "discovered_at": "2026-10-04T02:37:13.341966+00:00",
     "issue_number": 58,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/58"
+  },
+  {
+    "id": "3176d626e576196743b7",
+    "platform": "ChatGPT",
+    "company": "OpenAI",
+    "type": "security",
+    "severity": "high",
+    "headline": "A Flaw in ChatGPT’s Mac App Could Have Let Hackers Grab Sensitive Data - WIRED",
+    "summary": "Unverified discovery from a public news feed. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQQXF6b0Q4TTRYdTFnWVFQcHlZU0Z2T3cxOW9sdWlub0EzVnVFRVlXUmJMYm1aR05vb3I4cmdlYlJQQVdyMng2VnltNGRWMGJRSTlMZWNLSi1JYlpmZ0wwalVBWTZ5d3RQTDhvYVNIQklhQWNDVGxFUU14eTd2a2Zkek1Xd3pycHRnb1hzMDZnMkI4LU5DT0ZPX0xaWU5sd1k?oc=5",
+    "date": "Fri, 02 Oct 2026 09:45:00 GMT",
+    "status": "UNVERIFIED",
+    "discovered_at": "2026-10-04T09:46:33.533711+00:00",
+    "issue_number": 59,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/59"
+  },
+  {
+    "id": "eb5d3e327e5a38ad8639",
+    "platform": "Claude",
+    "company": "Anthropic",
+    "type": "security",
+    "severity": "high",
+    "headline": "Researchers used Anthropic’s Claude to hack into OpenAI - TechCrunch",
+    "summary": "Unverified discovery from a public news feed. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQS0tYS0VHd1I0cEFmd0JuMHh0SEg0NGxoMUprUDFPWVRlWWZvWE9LN0ZWMWd6Z2Utc2dlYWY2elB3Nk1xTGtRZm5aSzFDZlhfR0JRSms0NkJmVDlDY3JJYkxzU0M4ZWFLak1RSnNGNTlzWTJRZmxkbGZfUWppNUVDc3hxQUlVd01Ha1Z1U1ZYUzJReUU?oc=5",
+    "date": "Fri, 18 Sep 2026 07:00:00 GMT",
+    "status": "UNVERIFIED",
+    "discovered_at": "2026-10-04T09:46:34.041053+00:00",
+    "issue_number": 60,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/60"
   }
 ]
