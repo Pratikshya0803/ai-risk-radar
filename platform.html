@@ -59,8 +59,8 @@ const id=new URLSearchParams(location.search).get("id");
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
 async function run(){
  try{
-  const [pr,nr]=await Promise.all([fetch("data/platforms.json"),fetch("data/approved-news.json")]);
-  const platforms=await pr.json(), all=await nr.json();
+  const [pr,nr]=await Promise.all([fetch("data/platforms.json?v=" + Date.now(), { cache: "no-store" }),fetch("data/approved-news.json?v=" + Date.now(), { cache: "no-store" })]);
+  const platforms=await pr.json(), all=(await nr.json()).filter(x=>String(x.status||"VERIFIED").toUpperCase()==="VERIFIED");
   const p=platforms.find(x=>x.id===id);
   if(!p){document.getElementById("name").textContent="Platform not found";return}
   const news=all.filter(x=>String(x.platform).toLowerCase()===p.name.toLowerCase());
