@@ -26,6 +26,20 @@ h1{font-size:clamp(34px,6vw,58px);line-height:1.05;letter-spacing:-2px;margin:8p
 .stat{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #222936;color:#9da6b6}
 .stat strong{color:#f5f7fb}
 section{padding:38px 0}.heading{margin-bottom:18px}.heading h2{font-size:25px}.heading p{color:#7f899b;font-size:13px}
+.timeline{position:relative;padding:8px 0 8px 34px}
+.timeline::before{content:"";position:absolute;left:9px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#ff5965,#30394b)}
+.timeline-item{position:relative;padding:0 0 25px 18px}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-dot{position:absolute;left:-31px;top:5px;width:15px;height:15px;border-radius:50%;background:#ff5965;border:3px solid #101520;box-shadow:0 0 0 1px #63303a,0 0 14px rgba(255,89,101,.18)}
+.timeline-card{background:#101520;border:1px solid #232b3a;border-radius:14px;padding:16px 17px;transition:.2s}
+.timeline-card:hover{border-color:#47536a;transform:translateX(2px)}
+.timeline-top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:7px}
+.timeline-date{color:#8ab4ff;font-size:11px;font-weight:800;letter-spacing:.3px}
+.timeline-domain{color:#aeb6c7;font-size:10px;font-weight:800;text-transform:uppercase;padding:4px 7px;border-radius:5px;background:#1b2331}
+.timeline-card h3{font-size:15px;line-height:1.4}
+.timeline-severity{display:inline-block;margin-top:9px;font-size:10px;font-weight:900;text-transform:uppercase}
+.timeline-summary{color:#7f899b;font-size:11px;margin-top:5px}
+@media(max-width:700px){.timeline{padding-left:29px}.timeline::before{left:7px}.timeline-dot{left:-27px}.timeline-item{padding-left:15px}.timeline-top{align-items:flex-start}.timeline-card h3{font-size:14px}}
 .news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
 .news{background:#101520;border:1px solid #232b3a;border-radius:14px;padding:19px}
 .top{display:flex;justify-content:space-between;gap:10px;margin-bottom:12px}
@@ -51,6 +65,7 @@ footer{border-top:1px solid #202634;padding:28px 0;color:#6e7789;font-size:12px}
 <div class="card"><div class="stat"><span>Verified risk stories</span><strong id="count">0</strong></div><div class="stat"><span>High severity</span><strong id="high">0</strong></div><div class="stat"><span>Medium severity</span><strong id="medium">0</strong></div><div class="stat"><span>Low severity</span><strong id="low">0</strong></div><div class="stat"><span>Risk categories observed</span><strong id="cats">0</strong></div></div>
 </div>
 </div></header>
+<section><div class="container"><div class="heading"><h2>📅 Incident timeline</h2><p>Verified risk events in chronological order.</p></div><div id="timeline"></div></div></section>
 <section><div class="container"><div class="heading"><h2>🔴 Verified risk intelligence</h2><p>Only manually approved stories are included.</p></div><div id="news"></div></div></section>
 <section><div class="container"><div class="heading"><h2>How the score works</h2><p>Transparent, evidence-based monitoring rather than a claim of absolute safety.</p></div><div class="method">The Radar score starts at 100 and deducts <b>15</b> points for each verified high-severity event, <b>6</b> for medium severity, and <b>2</b> for low severity. Multiple events accumulate, with the score capped at 0. A platform with no verified events is shown as <b>Insufficient verified data</b> rather than receiving a misleading perfect score. This follows the general risk-assessment principle of separating severity from likelihood and documenting the evidence behind assessments. The score is a monitoring indicator, not a certification or prediction.</div></div></section>
 <footer><div class="container">AI Risk Radar • Human-reviewed publication • <a href="index.html">Back to dashboard</a></div></footer>
@@ -84,12 +99,19 @@ async function run(){
   document.getElementById("cats").textContent=new Set(news.map(x=>x.type).filter(Boolean)).size;
   if(!news.length){
    document.getElementById("score").textContent="N/A";document.getElementById("scoreLabel").textContent="Insufficient verified data";document.getElementById("fill").style.width="0%";
+   document.getElementById("timeline").innerHTML='<div class="empty"><strong>No incidents to display yet.</strong>Verified platform incidents will appear here as they are added to the Radar dataset.</div>';
    document.getElementById("news").innerHTML='<div class="empty"><strong>No verified risk stories for '+esc(p.name)+' yet.</strong>This does not mean the platform is risk-free; it means this Radar dataset does not yet have enough verified evidence to score it.</div>';
    return;
   }
   const score=Math.max(0,100-(counts.high*15)-(counts.medium*6)-(counts.low*2));
   document.getElementById("score").textContent=score+"/100";document.getElementById("scoreLabel").textContent=score>=75?"Lower verified risk exposure":score>=50?"Moderate verified risk exposure":"Higher verified risk exposure";document.getElementById("fill").style.width=score+"%";
-  document.getElementById("news").innerHTML='<div class="news-grid">'+news.slice().reverse().map(x=>'<article class="news"><div class="top"><span class="tag">'+esc(x.type||"risk")+'</span><span class="'+esc(String(x.severity||"low").toLowerCase())+'">'+esc(x.severity||"low")+' risk</span></div><h3>'+esc(cleanHeadline(x.headline))+'</h3><div class="meta">'+esc(x.date||"")+'</div><a class="source" href="'+esc(x.url||"#")+'" target="_blank" rel="noopener noreferrer">View original source →</a></article>').join("")+'</div>';
+  const chronological=news.slice().sort((a,b)=>(Date.parse(a.date||"")||0)-(Date.parse(b.date||"")||0));
+  document.getElementById("timeline").innerHTML='<div class="timeline">'+chronological.map(x=>{
+   const severity=String(x.severity||"low").toLowerCase();
+   return '<article class="timeline-item"><span class="timeline-dot"></span><div class="timeline-card"><div class="timeline-top"><span class="timeline-date">'+esc(x.date||"Date unavailable")+'</span><span class="timeline-domain">'+esc(x.type||"risk")+'</span></div><h3>'+esc(cleanHeadline(x.headline))+'</h3><span class="timeline-severity '+esc(severity)+'">'+esc(severity)+' severity</span></div></article>';
+  }).join("")+'</div>';
+
+  document.getElementById("news").innerHTML='<div class="news-grid">'+chronological.slice().reverse().map(x=>'<article class="news"><div class="top"><span class="tag">'+esc(x.type||"risk")+'</span><span class="'+esc(String(x.severity||"low").toLowerCase())+'">'+esc(x.severity||"low")+' risk</span></div><h3>'+esc(cleanHeadline(x.headline))+'</h3><div class="meta">'+esc(x.date||"")+'</div><a class="source" href="'+esc(x.url||"#")+'" target="_blank" rel="noopener noreferrer">View original source →</a></article>').join("")+'</div>';
  }catch(e){document.getElementById("name").textContent="Unable to load profile";console.error(e)}
 }
 run();
