@@ -347,71 +347,76 @@
     }
 
     .risk-chart-card {
-      min-height: 360px;
+      min-height: 390px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       position: relative;
       background:
-        radial-gradient(circle at 50% 38%, rgba(138,180,255,0.08), transparent 44%),
+        radial-gradient(circle at 42% 50%, rgba(138,180,255,0.055), transparent 42%),
         linear-gradient(145deg, #121925, #0d1119);
     }
 
     .risk-chart-card::after {
       content: "";
       position: absolute;
-      width: 300px;
-      height: 72px;
-      bottom: 34px;
-      left: 50%;
+      width: 340px;
+      height: 55px;
+      left: 40%;
+      bottom: 36px;
       transform: translateX(-50%);
-      background: radial-gradient(ellipse, rgba(0,0,0,0.58), transparent 70%);
-      filter: blur(6px);
+      background: radial-gradient(ellipse, rgba(0,0,0,0.42), transparent 70%);
+      filter: blur(7px);
       pointer-events: none;
     }
 
     .risk-donut-stage {
-      width: 320px;
-      height: 320px;
+      width: 340px;
+      height: 340px;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      transform: translateY(-4px);
+      transform: translateX(-8px);
     }
 
     .risk-donut-svg {
-      width: 310px;
-      height: 310px;
+      width: 335px;
+      height: 335px;
       overflow: visible;
-      filter: drop-shadow(0 18px 12px rgba(0,0,0,0.28));
+      filter: drop-shadow(0 10px 8px rgba(0,0,0,0.18));
     }
 
-    .risk-donut-slice {
-      cursor: default;
-      transition: transform 0.18s ease, filter 0.18s ease;
-      transform-box: fill-box;
-      transform-origin: center;
+    .risk-donut-track {
+      fill: none;
+      stroke: rgba(255,255,255,0.07);
+      stroke-width: 25;
     }
 
-    .risk-donut-slice:hover {
-      filter: brightness(1.12) drop-shadow(0 7px 7px rgba(0,0,0,0.28));
-      transform: translateY(-3px);
+    .risk-donut-ring {
+      fill: none;
+      stroke-width: 25;
+      stroke-linecap: round;
+      transition: filter 0.18s ease, opacity 0.18s ease;
+    }
+
+    .risk-donut-ring:hover {
+      filter: brightness(1.12) drop-shadow(0 4px 5px rgba(0,0,0,0.28));
     }
 
     .risk-donut-center {
       position: absolute;
       z-index: 2;
-      width: 112px;
-      height: 112px;
+      width: 108px;
+      height: 108px;
       border-radius: 50%;
       background:
-        radial-gradient(circle at 35% 28%, #273043, #111722 68%);
-      border: 1px solid rgba(255,255,255,0.08);
+        radial-gradient(circle at 35% 28%, #30394b, #111722 72%);
+      border: 1px solid rgba(255,255,255,0.09);
       box-shadow:
-        0 7px 16px rgba(0,0,0,0.38),
-        0 2px 7px rgba(0,0,0,0.5) inset,
+        0 6px 14px rgba(0,0,0,0.38),
+        0 2px 6px rgba(0,0,0,0.45) inset,
         0 1px 0 rgba(255,255,255,0.08) inset;
       display: flex;
       flex-direction: column;
@@ -423,7 +428,7 @@
 
     .risk-donut-center strong {
       display: block;
-      font-size: 35px;
+      font-size: 32px;
       line-height: 1;
       letter-spacing: -1px;
       text-shadow: 0 2px 8px rgba(0,0,0,0.45);
@@ -432,9 +437,9 @@
     .risk-donut-center span {
       display: block;
       margin-top: 7px;
-      color: #8993a6;
-      font-size: 10px;
-      font-weight: 700;
+      color: #aeb6c7;
+      font-size: 9px;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.8px;
     }
@@ -1074,48 +1079,6 @@
 
 
 
-    function polarPoint(cx, cy, radius, angle) {
-      const radians = (angle - 90) * Math.PI / 180;
-      return {
-        x: cx + radius * Math.cos(radians),
-        y: cy + radius * Math.sin(radians)
-      };
-    }
-
-    function donutSlicePath(cx, cy, outerRadius, innerRadius, startAngle, endAngle) {
-      const outerStart = polarPoint(cx, cy, outerRadius, endAngle);
-      const outerEnd = polarPoint(cx, cy, outerRadius, startAngle);
-      const innerStart = polarPoint(cx, cy, innerRadius, startAngle);
-      const innerEnd = polarPoint(cx, cy, innerRadius, endAngle);
-      const largeArc = endAngle - startAngle > 180 ? 1 : 0;
-
-      return [
-        "M", outerStart.x, outerStart.y,
-        "A", outerRadius, outerRadius, 0, largeArc, 0, outerEnd.x, outerEnd.y,
-        "L", innerStart.x, innerStart.y,
-        "A", innerRadius, innerRadius, 0, largeArc, 1, innerEnd.x, innerEnd.y,
-        "Z"
-      ].join(" ");
-    }
-
-    function hexToRgb(hex) {
-      const value = hex.replace("#", "");
-      return {
-        r: parseInt(value.substring(0, 2), 16),
-        g: parseInt(value.substring(2, 4), 16),
-        b: parseInt(value.substring(4, 6), 16)
-      };
-    }
-
-    function shadeColor(hex, amount) {
-      const rgb = hexToRgb(hex);
-      const clamp = value => Math.max(0, Math.min(255, value));
-      return "#" + [rgb.r, rgb.g, rgb.b].map(value => {
-        const next = clamp(Math.round(value + (255 - value) * amount));
-        return next.toString(16).padStart(2, "0");
-      }).join("");
-    }
-
     function renderRiskLandscape() {
       const counts = {};
       allNews.forEach(item => {
@@ -1125,105 +1088,65 @@
 
       const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
       const total = entries.reduce((sum, entry) => sum + entry[1], 0);
-      const palette = ["#ff5965", "#f5c451", "#8ab4ff", "#62d69b", "#b58cff", "#ff8f5a", "#6fd3d8", "#aeb6c7"];
+      const palette = ["#1da3b3", "#f5b33f", "#8ab4ff", "#8fcf73", "#b58cff", "#ff6b57", "#62d69b", "#aeb6c7"];
 
       document.getElementById("risk-total").textContent = total;
 
       const svg = document.getElementById("risk-donut");
       const defs = document.getElementById("risk-donut-defs");
-
       svg.querySelectorAll(".risk-generated").forEach(node => node.remove());
       defs.innerHTML = "";
 
-      if (!entries.length) {
-        return;
-      }
+      if (!entries.length) return;
 
-      const cx = 160;
-      const cy = 145;
-      const outerRadius = 112;
-      const innerRadius = 60;
-      const depth = 13;
-      const gap = Math.min(2.4, 360 / entries.length / 5);
+      const cx = 168;
+      const cy = 168;
+      const maxRadius = 146;
+      const ringGap = 27;
+      const stroke = 23;
+      const startAngle = 300;
+      const availableSweep = 300;
 
-      let start = -90;
+      entries.forEach((entry, index) => {
+        const radius = maxRadius - (index * ringGap);
+        const share = entry[1] / total;
+        const sweep = Math.max(share * availableSweep, 10);
+        const endAngle = startAngle + sweep;
 
-      const segments = entries.map((entry, index) => {
-        const sweep = (entry[1] / total) * 360;
-        const sliceStart = start + gap;
-        const sliceEnd = start + sweep - gap;
-        const midAngle = start + sweep / 2;
-        const radians = (midAngle - 90) * Math.PI / 180;
-        const explode = 9;
-        const dx = Math.cos(radians) * explode;
-        const dy = Math.sin(radians) * explode;
-        const color = palette[index % palette.length];
-        const dark = shadeColor(color, -0.45);
-        const light = shadeColor(color, 0.18);
-        const gradientId = "risk-gradient-" + index;
+        const circumference = 2 * Math.PI * radius;
+        const arcLength = (sweep / 360) * circumference;
 
-        const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
-        gradient.setAttribute("id", gradientId);
-        gradient.setAttribute("x1", "0");
-        gradient.setAttribute("y1", "0");
-        gradient.setAttribute("x2", "1");
-        gradient.setAttribute("y2", "1");
+        const track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        track.setAttribute("class", "risk-donut-track risk-generated");
+        track.setAttribute("cx", cx);
+        track.setAttribute("cy", cy);
+        track.setAttribute("r", radius);
+        svg.appendChild(track);
 
-        const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-        stop1.setAttribute("offset", "0%");
-        stop1.setAttribute("stop-color", light);
+        const ring = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        ring.setAttribute("class", "risk-donut-ring risk-generated");
+        ring.setAttribute("cx", cx);
+        ring.setAttribute("cy", cy);
+        ring.setAttribute("r", radius);
+        ring.setAttribute("stroke", palette[index % palette.length]);
+        ring.setAttribute("stroke-dasharray", arcLength + " " + circumference);
+        ring.setAttribute("stroke-dashoffset", "0");
+        ring.setAttribute("transform", "rotate(" + (startAngle - 90) + " " + cx + " " + cy + ")");
+        ring.setAttribute("aria-label", entry[0] + ": " + entry[1] + " verified events");
 
-        const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-        stop2.setAttribute("offset", "55%");
-        stop2.setAttribute("stop-color", color);
-
-        const stop3 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-        stop3.setAttribute("offset", "100%");
-        stop3.setAttribute("stop-color", dark);
-
-        gradient.append(stop1, stop2, stop3);
-        defs.appendChild(gradient);
-
-        const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
-        group.setAttribute("class", "risk-donut-slice risk-generated");
-        group.setAttribute("transform", "translate(" + dx + " " + dy + ")");
-
-        const bottom = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        bottom.setAttribute("d", donutSlicePath(cx, cy + depth, outerRadius, innerRadius, sliceStart, sliceEnd));
-        bottom.setAttribute("fill", dark);
-        bottom.setAttribute("opacity", "0.96");
-
-        const main = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        main.setAttribute("d", donutSlicePath(cx, cy, outerRadius, innerRadius, sliceStart, sliceEnd));
-        main.setAttribute("fill", "url(#" + gradientId + ")");
-        main.setAttribute("stroke", "rgba(255,255,255,0.18)");
-        main.setAttribute("stroke-width", "1.2");
-
-        const innerEdge = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        innerEdge.setAttribute("d", donutSlicePath(cx, cy + 1, innerRadius + 1.5, innerRadius - 1.5, sliceStart, sliceEnd));
-        innerEdge.setAttribute("fill", "none");
-        innerEdge.setAttribute("stroke", "rgba(0,0,0,0.22)");
-        innerEdge.setAttribute("stroke-width", "2");
-
-        group.append(bottom, main, innerEdge);
-        svg.appendChild(group);
-
-        start += sweep;
-
-        return {
-          name: entry[0],
-          count: entry[1],
-          color
-        };
+        const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
+        title.textContent = entry[0] + ": " + entry[1] + " verified events";
+        ring.appendChild(title);
+        svg.appendChild(ring);
       });
 
-      document.getElementById("risk-legend").innerHTML = segments.map(segment => {
-        const share = Math.round((segment.count / total) * 100);
+      document.getElementById("risk-legend").innerHTML = entries.map((entry, index) => {
+        const share = Math.round((entry[1] / total) * 100);
         return `
           <div class="risk-legend-row">
-            <span class="risk-legend-dot" style="background:${segment.color};"></span>
-            <span class="risk-legend-name">${segment.name}</span>
-            <span class="risk-legend-count">${segment.count}<span class="risk-legend-share">${share}%</span></span>
+            <span class="risk-legend-dot" style="background:${palette[index % palette.length]};"></span>
+            <span class="risk-legend-name">${entry[0]}</span>
+            <span class="risk-legend-count">${entry[1]}<span class="risk-legend-share">${share}%</span></span>
           </div>
         `;
       }).join("");
