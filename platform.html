@@ -52,7 +52,7 @@ footer{border-top:1px solid #202634;padding:28px 0;color:#6e7789;font-size:12px}
 </div>
 </div></header>
 <section><div class="container"><div class="heading"><h2>🔴 Verified risk intelligence</h2><p>Only manually approved stories are included.</p></div><div id="news"></div></div></section>
-<section><div class="container"><div class="heading"><h2>How the score works</h2><p>Transparent, evidence-based monitoring rather than a claim of absolute safety.</p></div><div class="method">The Radar score starts at 100 and deducts points for verified risk events: <b>25</b> for high severity, <b>12</b> for medium, and <b>5</b> for low. Multiple events accumulate, with the score capped at 0. A platform with no verified events is shown as <b>Insufficient verified data</b> rather than receiving a misleading perfect score. This follows the general risk-assessment principle of separating severity from likelihood and documenting the evidence behind assessments. The score is a monitoring indicator, not a certification or prediction.</div></div></section>
+<section><div class="container"><div class="heading"><h2>How the score works</h2><p>Transparent, evidence-based monitoring rather than a claim of absolute safety.</p></div><div class="method">The Radar score starts at 100 and deducts <b>15</b> points for each verified high-severity event, <b>6</b> for medium severity, and <b>2</b> for low severity. Multiple events accumulate, with the score capped at 0. A platform with no verified events is shown as <b>Insufficient verified data</b> rather than receiving a misleading perfect score. This follows the general risk-assessment principle of separating severity from likelihood and documenting the evidence behind assessments. The score is a monitoring indicator, not a certification or prediction.</div></div></section>
 <footer><div class="container">AI Risk Radar • Human-reviewed publication • <a href="index.html">Back to dashboard</a></div></footer>
 <script>
 const id=new URLSearchParams(location.search).get("id");
@@ -75,7 +75,7 @@ async function run(){
    document.getElementById("news").innerHTML='<div class="empty"><strong>No verified risk stories for '+esc(p.name)+' yet.</strong>This does not mean the platform is risk-free; it means this Radar dataset does not yet have enough verified evidence to score it.</div>';
    return;
   }
-  const score=Math.max(0,100-(counts.high*25)-(counts.medium*12)-(counts.low*5));
+  const score=Math.max(0,100-(counts.high*15)-(counts.medium*6)-(counts.low*2));
   document.getElementById("score").textContent=score+"/100";document.getElementById("scoreLabel").textContent=score>=75?"Lower verified risk exposure":score>=50?"Moderate verified risk exposure":"Higher verified risk exposure";document.getElementById("fill").style.width=score+"%";
   document.getElementById("news").innerHTML='<div class="news-grid">'+news.slice().reverse().map(x=>'<article class="news"><div class="top"><span class="tag">'+esc(x.type||"risk")+'</span><span class="'+esc(String(x.severity||"low").toLowerCase())+'">'+esc(x.severity||"low")+' risk</span></div><h3>'+esc(x.headline)+'</h3><p>'+esc(x.summary||"Manually verified AI-risk story.")+'</p><div class="meta">'+esc(x.date||"")+'</div><a class="source" href="'+esc(x.url||"#")+'" target="_blank" rel="noopener noreferrer">View original source →</a></article>').join("")+'</div>';
  }catch(e){document.getElementById("name").textContent="Unable to load profile";console.error(e)}
