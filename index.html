@@ -492,178 +492,6 @@
       font-weight: 400;
     }
 
-    /* PLATFORM COMPARISON MATRIX */
-
-    .comparison-wrap {
-      background: #101520;
-      border: 1px solid #232b3a;
-      border-radius: 15px;
-      overflow: hidden;
-    }
-
-    .comparison-note {
-      color: #747e91;
-      font-size: 12px;
-      margin-bottom: 16px;
-    }
-
-    .comparison-scroll {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .comparison-table {
-      width: 100%;
-      min-width: 860px;
-      border-collapse: collapse;
-      font-size: 12px;
-    }
-
-    .comparison-table th {
-      background: #151c29;
-      color: #8993a6;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.7px;
-      font-weight: 800;
-      padding: 14px 12px;
-      text-align: center;
-      border-bottom: 1px solid #293142;
-      white-space: nowrap;
-    }
-
-    .comparison-table th:first-child,
-    .comparison-table td:first-child {
-      text-align: left;
-      position: sticky;
-      left: 0;
-      z-index: 2;
-    }
-
-    .comparison-table th:first-child {
-      background: #151c29;
-    }
-
-    .comparison-table td:first-child {
-      background: #101520;
-    }
-
-    .comparison-table td {
-      padding: 13px 10px;
-      text-align: center;
-      border-bottom: 1px solid #222936;
-      color: #c9cfda;
-      white-space: nowrap;
-    }
-
-    .comparison-table tr:last-child td {
-      border-bottom: 0;
-    }
-
-    .comparison-platform {
-      font-weight: 800;
-      color: #f5f7fb;
-    }
-
-    .comparison-company {
-      display: block;
-      color: #6f788a;
-      font-size: 10px;
-      font-weight: 500;
-      margin-top: 2px;
-    }
-
-    .score-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 52px;
-      padding: 5px 8px;
-      border-radius: 7px;
-      font-weight: 900;
-      font-size: 12px;
-    }
-
-    .score-low-risk {
-      color: #67e8a5;
-      background: #10271d;
-      border: 1px solid #245c43;
-    }
-
-    .score-medium-risk {
-      color: #f5c451;
-      background: #2a2110;
-      border: 1px solid #66521d;
-    }
-
-    .score-high-risk {
-      color: #ff6974;
-      background: #291318;
-      border: 1px solid #63303a;
-    }
-
-    .matrix-cell {
-      display: inline-flex;
-      min-width: 29px;
-      height: 29px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 7px;
-      font-weight: 900;
-    }
-
-    .matrix-zero {
-      color: #566074;
-      background: #0d121b;
-      border: 1px solid #202736;
-    }
-
-    .matrix-low {
-      color: #9da7b9;
-      background: #18202d;
-      border: 1px solid #293447;
-    }
-
-    .matrix-medium {
-      color: #f5c451;
-      background: #2a2110;
-      border: 1px solid #66521d;
-    }
-
-    .matrix-high {
-      color: #ff6974;
-      background: #291318;
-      border: 1px solid #63303a;
-    }
-
-    .matrix-legend {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      padding: 13px 15px;
-      border-top: 1px solid #222936;
-      color: #747e91;
-      font-size: 11px;
-    }
-
-    .matrix-legend span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .matrix-legend i {
-      width: 9px;
-      height: 9px;
-      border-radius: 3px;
-      display: inline-block;
-    }
-
-    .matrix-legend .zero { background: #0d121b; border: 1px solid #30394b; }
-    .matrix-legend .low { background: #18202d; border: 1px solid #293447; }
-    .matrix-legend .medium { background: #2a2110; border: 1px solid #66521d; }
-    .matrix-legend .high { background: #291318; border: 1px solid #63303a; }
-
     .platform-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -839,8 +667,8 @@
 
       <div class="nav-links">
         <a href="#risks">Risk Intelligence</a>
+        <a href="comparison.html">Compare Platforms</a>
         <a href="#platforms">Platforms</a>
-        <a href="#platform-comparison">Compare</a>
         <a href="#risk-landscape">Risk Landscape</a>
         <a href="#methodology">Methodology</a>
       </div>
@@ -1021,60 +849,6 @@
   </section>
 
 
-  <!-- PLATFORM COMPARISON -->
-
-  <section id="platform-comparison">
-
-    <div class="container">
-
-      <div class="section-heading">
-
-        <div>
-          <h2>⚖️ Platform Risk Comparison</h2>
-          <p>Compare observed risk exposure across monitored AI platforms and domains.</p>
-        </div>
-
-      </div>
-
-      <p class="comparison-note">
-        Radar Score is a monitoring indicator where higher scores mean lower observed risk exposure.
-        Domain cells show the number of verified events currently tracked for each platform.
-      </p>
-
-      <div class="comparison-wrap">
-
-        <div class="comparison-scroll">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th>Platform</th>
-                <th>Radar Score</th>
-                <th>Security</th>
-                <th>Privacy</th>
-                <th>Regulatory</th>
-                <th>Legal</th>
-                <th>Operational</th>
-                <th>AI Safety</th>
-              </tr>
-            </thead>
-            <tbody id="comparison-body"></tbody>
-          </table>
-        </div>
-
-        <div class="matrix-legend">
-          <span><i class="zero"></i> 0 events</span>
-          <span><i class="low"></i> 1–2</span>
-          <span><i class="medium"></i> 3–4</span>
-          <span><i class="high"></i> 5+ events</span>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
   <!-- PLATFORMS -->
 
   <section id="platforms">
@@ -1209,7 +983,6 @@
 
   <script>
     let allNews = [];
-    let allPlatforms = [];
 
 
     function cleanHeadline(headline) {
@@ -1247,7 +1020,6 @@
         if (!response.ok) throw new Error("Platform database unavailable");
 
         const platforms = await response.json();
-        allPlatforms = platforms;
 
         container.innerHTML = platforms.map(platform => {
           const initial = platform.name
@@ -1269,7 +1041,6 @@
 
         const count = document.querySelector(".risk-stat strong");
         if (count) count.textContent = platforms.length;
-        renderPlatformComparison();
 
       } catch (error) {
         container.innerHTML = `
@@ -1295,7 +1066,6 @@
 
         renderHighAlerts("all");
         renderRiskLandscape();
-        renderPlatformComparison();
       } catch (error) {
         container.innerHTML = `
           <div class="empty">
@@ -1379,91 +1149,6 @@
             <span class="risk-legend-name">${entry[0]}</span>
             <span class="risk-legend-count">${entry[1]}<span class="risk-legend-share">${share}%</span></span>
           </div>
-        `;
-      }).join("");
-    }
-
-    function getRadarScore(news) {
-      const counts = { high: 0, medium: 0, low: 0 };
-
-      news.forEach(item => {
-        const severity = String(item.severity || "").toLowerCase();
-        if (Object.prototype.hasOwnProperty.call(counts, severity)) {
-          counts[severity] += 1;
-        }
-      });
-
-      return Math.max(0, 100 - (counts.high * 15) - (counts.medium * 6) - (counts.low * 2));
-    }
-
-    function getScoreClass(score) {
-      if (score >= 75) return "score-low-risk";
-      if (score >= 50) return "score-medium-risk";
-      return "score-high-risk";
-    }
-
-    function getMatrixClass(count) {
-      if (count === 0) return "matrix-zero";
-      if (count <= 2) return "matrix-low";
-      if (count <= 4) return "matrix-medium";
-      return "matrix-high";
-    }
-
-    function renderPlatformComparison() {
-      const container = document.getElementById("comparison-body");
-      if (!container) return;
-
-      const domains = ["security", "privacy", "regulatory", "legal", "operational", "safety"];
-
-      const platformMap = {};
-      allNews.forEach(item => {
-        const platform = String(item.platform || "AI ecosystem").trim();
-        if (!platformMap[platform]) platformMap[platform] = [];
-        platformMap[platform].push(item);
-      });
-
-      const rows = [];
-      const platformNames = allPlatforms.map(platform => platform.name);
-
-      platformNames.forEach(name => {
-        const news = platformMap[name] || [];
-        const score = news.length ? getRadarScore(news) : null;
-
-        const domainCounts = {};
-        domains.forEach(domain => {
-          domainCounts[domain] = news.filter(
-            item => String(item.type || "").toLowerCase() === domain
-          ).length;
-        });
-
-        rows.push({ name, news, score, domainCounts });
-      });
-
-      rows.sort((a, b) => {
-        if (a.score === null) return 1;
-        if (b.score === null) return -1;
-        return a.score - b.score;
-      });
-
-      container.innerHTML = rows.map(row => {
-        const scoreMarkup = row.score === null
-          ? '<span class="score-pill" style="color:#8791a4;background:#0d121b;border:1px solid #30394b;">N/A</span>'
-          : '<span class="score-pill ' + getScoreClass(row.score) + '">' + row.score + '</span>';
-
-        return `
-          <tr>
-            <td>
-              <span class="comparison-platform">${row.name}</span>
-            </td>
-            <td>${scoreMarkup}</td>
-            ${domains.map(domain => `
-              <td>
-                <span class="matrix-cell ${getMatrixClass(row.domainCounts[domain])}">
-                  ${row.domainCounts[domain]}
-                </span>
-              </td>
-            `).join("")}
-          </tr>
         `;
       }).join("");
     }
