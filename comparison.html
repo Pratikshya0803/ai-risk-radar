@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Risk Radar | Platform Comparison</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Arial,sans-serif;background:#080b12;color:#f5f7fb;line-height:1.6}
+a{color:inherit;text-decoration:none}.container{width:min(1180px,92%);margin:auto}
+nav{border-bottom:1px solid #202634;background:rgba(8,11,18,.96);position:sticky;top:0;z-index:10;backdrop-filter:blur(12px)}
+.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{font-size:21px;font-weight:800;letter-spacing:-.5px}.logo span{color:#ff4d5a}
+.back{color:#8ab4ff;font-size:13px;font-weight:700}
+.hero{padding:65px 0 35px;background:radial-gradient(circle at 15% 10%,rgba(255,70,90,.12),transparent 35%),radial-gradient(circle at 85% 20%,rgba(80,120,255,.1),transparent 35%)}
+.eyebrow{color:#ff6570;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;margin-bottom:9px}
+h1{font-size:clamp(34px,6vw,58px);line-height:1.05;letter-spacing:-2px;margin-bottom:13px}
+.hero p{color:#aeb6c7;font-size:16px;max-width:760px}
+section{padding:30px 0 65px}
+.note{color:#7f899b;font-size:12px;margin-bottom:16px;max-width:850px}
+.comparison-wrap{background:#101520;border:1px solid #232b3a;border-radius:15px;overflow:hidden}
+.comparison-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;min-width:860px;border-collapse:collapse;font-size:12px}
+th{background:#151c29;color:#8993a6;font-size:10px;text-transform:uppercase;letter-spacing:.7px;font-weight:800;padding:14px 12px;text-align:center;border-bottom:1px solid #293142;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;z-index:2}
+th:first-child{background:#151c29}td:first-child{background:#101520}
+td{padding:13px 10px;text-align:center;border-bottom:1px solid #222936;color:#c9cfda;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.platform-link{font-weight:800;color:#f5f7fb}.platform-link:hover{color:#8ab4ff}
+.comparison-company{display:block;color:#6f788a;font-size:10px;font-weight:500;margin-top:2px}
+.score-pill{display:inline-flex;align-items:center;justify-content:center;min-width:52px;padding:5px 8px;border-radius:7px;font-weight:900;font-size:12px}
+.score-low-risk{color:#67e8a5;background:#10271d;border:1px solid #245c43}
+.score-medium-risk{color:#f5c451;background:#2a2110;border:1px solid #66521d}
+.score-high-risk{color:#ff6974;background:#291318;border:1px solid #63303a}
+.matrix-cell{display:inline-flex;min-width:29px;height:29px;align-items:center;justify-content:center;border-radius:7px;font-weight:900}
+.matrix-zero{color:#566074;background:#0d121b;border:1px solid #202736}
+.matrix-low{color:#9da7b9;background:#18202d;border:1px solid #293447}
+.matrix-medium{color:#f5c451;background:#2a2110;border:1px solid #66521d}
+.matrix-high{color:#ff6974;background:#291318;border:1px solid #63303a}
+.legend{display:flex;gap:14px;flex-wrap:wrap;padding:13px 15px;border-top:1px solid #222936;color:#747e91;font-size:11px}
+.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:9px;height:9px;border-radius:3px;display:inline-block}
+.legend .zero{background:#0d121b;border:1px solid #30394b}.legend .low{background:#18202d;border:1px solid #293447}.legend .medium{background:#2a2110;border:1px solid #66521d}.legend .high{background:#291318;border:1px solid #63303a}
+.empty{border:1px dashed #30394b;border-radius:14px;padding:35px;text-align:center;color:#8791a4;background:#0d121b}
+footer{border-top:1px solid #202634;padding:28px 0;color:#6e7789;font-size:12px}
+@media(max-width:700px){h1{font-size:38px}.hero{padding:50px 0 25px}}
+</style>
+</head>
+<body>
+<nav><div class="container nav"><a href="index.html" class="logo">AI <span>RISK</span> RADAR</a><a href="index.html" class="back">← Dashboard</a></div></nav>
+
+<header class="hero"><div class="container">
+<div class="eyebrow">Comparative Risk Intelligence</div>
+<h1>⚖️ Platform Risk Comparison</h1>
+<p>Compare observed risk exposure across monitored AI platforms and see which domains are driving the verified incident counts.</p>
+</div></header>
+
+<section><div class="container">
+<p class="note">Radar Score is a monitoring indicator where higher scores mean lower observed risk exposure. Domain cells show the number of verified events currently tracked for each platform. Click a platform name to open its full risk profile.</p>
+
+<div class="comparison-wrap">
+<div class="comparison-scroll">
+<table>
+<thead><tr><th>Platform</th><th>Radar Score</th><th>Security</th><th>Privacy</th><th>Regulatory</th><th>Legal</th><th>Operational</th><th>AI Safety</th></tr></thead>
+<tbody id="comparison-body"></tbody>
+</table>
+</div>
+<div class="legend">
+<span><i class="zero"></i> 0 events</span><span><i class="low"></i> 1–2</span><span><i class="medium"></i> 3–4</span><span><i class="high"></i> 5+ events</span>
+</div>
+</div>
+</div></section>
+
+<footer><div class="container">AI Risk Radar • Human-reviewed publication • <a href="index.html">Back to dashboard</a></div></footer>
+
+<script>
+let platforms=[],allNews=[];
+const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+
+function getRadarScore(news){
+ const counts={high:0,medium:0,low:0};
+ news.forEach(item=>{const severity=String(item.severity||"").toLowerCase();if(counts[severity]!==undefined)counts[severity]++});
+ return Math.max(0,100-(counts.high*15)-(counts.medium*6)-(counts.low*2));
+}
+function getScoreClass(score){
+ if(score>=75)return "score-low-risk";
+ if(score>=50)return "score-medium-risk";
+ return "score-high-risk";
+}
+function getMatrixClass(count){
+ if(count===0)return "matrix-zero";
+ if(count<=2)return "matrix-low";
+ if(count<=4)return "matrix-medium";
+ return "matrix-high";
+}
+function render(){
+ const domains=["security","privacy","regulatory","legal","operational","safety"];
+ const rows=platforms.map(platform=>{
+  const news=allNews.filter(x=>String(x.platform||"").toLowerCase()===platform.name.toLowerCase());
+  const domainCounts={};
+  domains.forEach(domain=>domainCounts[domain]=news.filter(x=>String(x.type||"").toLowerCase()===domain).length);
+  return {platform,news,domainCounts,score:news.length?getRadarScore(news):null};
+ }).sort((a,b)=>{
+  if(a.score===null)return 1;if(b.score===null)return -1;return a.score-b.score;
+ });
+
+ document.getElementById("comparison-body").innerHTML=rows.map(row=>{
+  const score=row.score===null?'<span class="score-pill" style="color:#8791a4;background:#0d121b;border:1px solid #30394b;">N/A</span>':'<span class="score-pill '+getScoreClass(row.score)+'">'+row.score+'</span>';
+  return '<tr><td><a class="platform-link" href="platform.html?id='+encodeURIComponent(row.platform.id)+'">'+esc(row.platform.name)+' ↗</a><span class="comparison-company">'+esc(row.platform.company)+'</span></td><td>'+score+'</td>'+domains.map(domain=>'<td><span class="matrix-cell '+getMatrixClass(row.domainCounts[domain])+'">'+row.domainCounts[domain]+'</span></td>').join("")+'</tr>';
+ }).join("");
+}
+
+async function run(){
+ try{
+  const [pr,nr]=await Promise.all([
+   fetch("data/platforms.json?v="+Date.now(),{cache:"no-store"}),
+   fetch("data/approved-news.json?v="+Date.now(),{cache:"no-store"})
+  ]);
+  platforms=await pr.json();
+  allNews=(await nr.json()).filter(x=>String(x.status||"VERIFIED").toUpperCase()==="VERIFIED");
+  render();
+ }catch(e){
+  document.getElementById("comparison-body").innerHTML='<tr><td colspan="8">Unable to load comparison data. Please refresh the page.</td></tr>';
+  console.error(e);
+ }
+}
+run();
+</script>
+</body>
+</html>
