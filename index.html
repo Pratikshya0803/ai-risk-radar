@@ -1209,6 +1209,7 @@
 
   <script>
     let allNews = [];
+    let allPlatforms = [];
 
 
     function cleanHeadline(headline) {
@@ -1246,6 +1247,7 @@
         if (!response.ok) throw new Error("Platform database unavailable");
 
         const platforms = await response.json();
+        allPlatforms = platforms;
 
         container.innerHTML = platforms.map(platform => {
           const initial = platform.name
@@ -1267,6 +1269,7 @@
 
         const count = document.querySelector(".risk-stat strong");
         if (count) count.textContent = platforms.length;
+        renderPlatformComparison();
 
       } catch (error) {
         container.innerHTML = `
@@ -1420,11 +1423,7 @@
       });
 
       const rows = [];
-      const platformCards = document.querySelectorAll(".platform");
-      const platformNames = Array.from(platformCards).map(card => {
-        const heading = card.querySelector("h3");
-        return heading ? heading.textContent.trim() : "";
-      });
+      const platformNames = allPlatforms.map(platform => platform.name);
 
       platformNames.forEach(name => {
         const news = platformMap[name] || [];
