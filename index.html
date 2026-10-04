@@ -347,90 +347,96 @@
     }
 
     .risk-chart-card {
-      min-height: 310px;
+      min-height: 360px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       position: relative;
       background:
-        radial-gradient(circle at 50% 38%, rgba(138,180,255,0.07), transparent 42%),
+        radial-gradient(circle at 50% 38%, rgba(138,180,255,0.08), transparent 44%),
         linear-gradient(145deg, #121925, #0d1119);
     }
 
     .risk-chart-card::after {
       content: "";
       position: absolute;
-      width: 270px;
-      height: 70px;
-      bottom: 30px;
+      width: 300px;
+      height: 72px;
+      bottom: 34px;
       left: 50%;
       transform: translateX(-50%);
-      background: radial-gradient(ellipse, rgba(0,0,0,0.55), transparent 70%);
-      filter: blur(5px);
+      background: radial-gradient(ellipse, rgba(0,0,0,0.58), transparent 70%);
+      filter: blur(6px);
       pointer-events: none;
     }
 
-    .risk-donut {
-      width: 230px;
-      height: 230px;
-      border-radius: 50%;
+    .risk-donut-stage {
+      width: 320px;
+      height: 320px;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #252c3a;
-      position: relative;
-      transform: perspective(700px) rotateX(18deg) rotateZ(-2deg);
-      box-shadow:
-        0 22px 28px rgba(0,0,0,0.42),
-        0 4px 0 rgba(255,255,255,0.08) inset,
-        0 -7px 0 rgba(0,0,0,0.22) inset;
+      transform: translateY(-4px);
     }
 
-    .risk-donut::before {
-      content: "";
-      position: absolute;
-      width: 132px;
-      height: 132px;
-      border-radius: 50%;
-      background: #101520;
-      box-shadow:
-        0 4px 8px rgba(0,0,0,0.45) inset,
-        0 1px 0 rgba(255,255,255,0.05);
+    .risk-donut-svg {
+      width: 310px;
+      height: 310px;
+      overflow: visible;
+      filter: drop-shadow(0 18px 12px rgba(0,0,0,0.28));
     }
 
-    .risk-donut::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(255,255,255,0.24), transparent 34%, rgba(0,0,0,0.18) 76%);
-      pointer-events: none;
-      mix-blend-mode: screen;
+    .risk-donut-slice {
+      cursor: default;
+      transition: transform 0.18s ease, filter 0.18s ease;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .risk-donut-slice:hover {
+      filter: brightness(1.12) drop-shadow(0 7px 7px rgba(0,0,0,0.28));
+      transform: translateY(-3px);
     }
 
     .risk-donut-center {
-      transform: rotateX(-18deg);
-      text-shadow: 0 2px 8px rgba(0,0,0,0.45);
-    }
-
-    .risk-donut-center {
-      position: relative;
-      z-index: 1;
+      position: absolute;
+      z-index: 2;
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 28%, #273043, #111722 68%);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.38),
+        0 2px 7px rgba(0,0,0,0.5) inset,
+        0 1px 0 rgba(255,255,255,0.08) inset;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      pointer-events: none;
     }
 
     .risk-donut-center strong {
       display: block;
-      font-size: 36px;
+      font-size: 35px;
       line-height: 1;
+      letter-spacing: -1px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.45);
     }
 
     .risk-donut-center span {
       display: block;
       margin-top: 7px;
       color: #8993a6;
-      font-size: 11px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
     }
 
     .risk-legend-card h3 {
@@ -813,7 +819,10 @@
       <div class="risk-landscape-grid">
 
         <div class="risk-chart-card">
-          <div id="risk-donut" class="risk-donut">
+          <div class="risk-donut-stage">
+            <svg id="risk-donut" class="risk-donut-svg" viewBox="0 0 320 320" aria-label="Verified risk events by domain">
+              <defs id="risk-donut-defs"></defs>
+            </svg>
             <div class="risk-donut-center">
               <strong id="risk-total">0</strong>
               <span>verified events</span>
@@ -1065,6 +1074,48 @@
 
 
 
+    function polarPoint(cx, cy, radius, angle) {
+      const radians = (angle - 90) * Math.PI / 180;
+      return {
+        x: cx + radius * Math.cos(radians),
+        y: cy + radius * Math.sin(radians)
+      };
+    }
+
+    function donutSlicePath(cx, cy, outerRadius, innerRadius, startAngle, endAngle) {
+      const outerStart = polarPoint(cx, cy, outerRadius, endAngle);
+      const outerEnd = polarPoint(cx, cy, outerRadius, startAngle);
+      const innerStart = polarPoint(cx, cy, innerRadius, startAngle);
+      const innerEnd = polarPoint(cx, cy, innerRadius, endAngle);
+      const largeArc = endAngle - startAngle > 180 ? 1 : 0;
+
+      return [
+        "M", outerStart.x, outerStart.y,
+        "A", outerRadius, outerRadius, 0, largeArc, 0, outerEnd.x, outerEnd.y,
+        "L", innerStart.x, innerStart.y,
+        "A", innerRadius, innerRadius, 0, largeArc, 1, innerEnd.x, innerEnd.y,
+        "Z"
+      ].join(" ");
+    }
+
+    function hexToRgb(hex) {
+      const value = hex.replace("#", "");
+      return {
+        r: parseInt(value.substring(0, 2), 16),
+        g: parseInt(value.substring(2, 4), 16),
+        b: parseInt(value.substring(4, 6), 16)
+      };
+    }
+
+    function shadeColor(hex, amount) {
+      const rgb = hexToRgb(hex);
+      const clamp = value => Math.max(0, Math.min(255, value));
+      return "#" + [rgb.r, rgb.g, rgb.b].map(value => {
+        const next = clamp(Math.round(value + (255 - value) * amount));
+        return next.toString(16).padStart(2, "0");
+      }).join("");
+    }
+
     function renderRiskLandscape() {
       const counts = {};
       allNews.forEach(item => {
@@ -1078,23 +1129,93 @@
 
       document.getElementById("risk-total").textContent = total;
 
+      const svg = document.getElementById("risk-donut");
+      const defs = document.getElementById("risk-donut-defs");
+
+      svg.querySelectorAll(".risk-generated").forEach(node => node.remove());
+      defs.innerHTML = "";
+
       if (!entries.length) {
-        document.getElementById("risk-donut").style.background = "#252c3a";
-        document.getElementById("risk-legend").innerHTML = '<p style="color:#8791a4;font-size:13px;">No verified risk events yet.</p>';
         return;
       }
 
-      let start = 0;
-      const segments = entries.map((entry, index) => {
-        const end = start + (entry[1] / total) * 360;
-        const color = palette[index % palette.length];
-        const segment = color + " " + start + "deg " + end + "deg";
-        start = end;
-        return { name: entry[0], count: entry[1], color, segment };
-      });
+      const cx = 160;
+      const cy = 145;
+      const outerRadius = 112;
+      const innerRadius = 60;
+      const depth = 13;
+      const gap = Math.min(2.4, 360 / entries.length / 5);
 
-      document.getElementById("risk-donut").style.background =
-        "conic-gradient(" + segments.map(segment => segment.segment).join(", ") + ")";
+      let start = -90;
+
+      const segments = entries.map((entry, index) => {
+        const sweep = (entry[1] / total) * 360;
+        const sliceStart = start + gap;
+        const sliceEnd = start + sweep - gap;
+        const midAngle = start + sweep / 2;
+        const radians = (midAngle - 90) * Math.PI / 180;
+        const explode = 9;
+        const dx = Math.cos(radians) * explode;
+        const dy = Math.sin(radians) * explode;
+        const color = palette[index % palette.length];
+        const dark = shadeColor(color, -0.45);
+        const light = shadeColor(color, 0.18);
+        const gradientId = "risk-gradient-" + index;
+
+        const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+        gradient.setAttribute("id", gradientId);
+        gradient.setAttribute("x1", "0");
+        gradient.setAttribute("y1", "0");
+        gradient.setAttribute("x2", "1");
+        gradient.setAttribute("y2", "1");
+
+        const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+        stop1.setAttribute("offset", "0%");
+        stop1.setAttribute("stop-color", light);
+
+        const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+        stop2.setAttribute("offset", "55%");
+        stop2.setAttribute("stop-color", color);
+
+        const stop3 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+        stop3.setAttribute("offset", "100%");
+        stop3.setAttribute("stop-color", dark);
+
+        gradient.append(stop1, stop2, stop3);
+        defs.appendChild(gradient);
+
+        const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        group.setAttribute("class", "risk-donut-slice risk-generated");
+        group.setAttribute("transform", "translate(" + dx + " " + dy + ")");
+
+        const bottom = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        bottom.setAttribute("d", donutSlicePath(cx, cy + depth, outerRadius, innerRadius, sliceStart, sliceEnd));
+        bottom.setAttribute("fill", dark);
+        bottom.setAttribute("opacity", "0.96");
+
+        const main = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        main.setAttribute("d", donutSlicePath(cx, cy, outerRadius, innerRadius, sliceStart, sliceEnd));
+        main.setAttribute("fill", "url(#" + gradientId + ")");
+        main.setAttribute("stroke", "rgba(255,255,255,0.18)");
+        main.setAttribute("stroke-width", "1.2");
+
+        const innerEdge = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        innerEdge.setAttribute("d", donutSlicePath(cx, cy + 1, innerRadius + 1.5, innerRadius - 1.5, sliceStart, sliceEnd));
+        innerEdge.setAttribute("fill", "none");
+        innerEdge.setAttribute("stroke", "rgba(0,0,0,0.22)");
+        innerEdge.setAttribute("stroke-width", "2");
+
+        group.append(bottom, main, innerEdge);
+        svg.appendChild(group);
+
+        start += sweep;
+
+        return {
+          name: entry[0],
+          count: entry[1],
+          color
+        };
+      });
 
       document.getElementById("risk-legend").innerHTML = segments.map(segment => {
         const share = Math.round((segment.count / total) * 100);
