@@ -633,6 +633,17 @@
       </div>
 
 
+      <div class="filters">
+        <button class="filter active" onclick="filterNews('all', this)">All</button>
+        <button class="filter" onclick="filterNews('security', this)">Security</button>
+        <button class="filter" onclick="filterNews('privacy', this)">Privacy</button>
+        <button class="filter" onclick="filterNews('regulatory', this)">Regulatory</button>
+        <button class="filter" onclick="filterNews('legal', this)">Legal</button>
+        <button class="filter" onclick="filterNews('operational', this)">Operational</button>
+        <button class="filter" onclick="filterNews('safety', this)">AI Safety</button>
+      </div>
+
+
       <div class="high-alert-note">
         Showing only the five most recent verified high-severity events. Other verified stories remain available on platform risk profiles.
       </div>
@@ -885,7 +896,7 @@
           item => String(item.status || "VERIFIED").toUpperCase() === "VERIFIED"
         );
 
-        renderHighAlerts();
+        renderHighAlerts("all");
       } catch (error) {
         container.innerHTML = `
           <div class="empty">
@@ -898,11 +909,12 @@
       }
     }
 
-    function renderHighAlerts() {
+    function renderHighAlerts(category = "all") {
       const container = document.getElementById("news-container");
 
-      const highAlerts = allNews
+      const filtered = allNews
         .filter(item => String(item.severity || "").toLowerCase() === "high")
+        .filter(item => category === "all" || String(item.type || "").toLowerCase() === category)
         .sort((a, b) => {
           const aTime = Date.parse(a.date || "") || 0;
           const bTime = Date.parse(b.date || "") || 0;
@@ -910,11 +922,11 @@
         })
         .slice(0, 5);
 
-      if (!highAlerts.length) {
+      if (!filtered.length) {
         container.innerHTML = `
           <div class="empty">
-            <strong>No verified high-alert events yet.</strong>
-            Approved high-severity intelligence will appear here when available.
+            <strong>No verified high-alert events in this domain.</strong>
+            High-severity intelligence will appear here when available.
           </div>
         `;
         return;
@@ -922,7 +934,7 @@
 
       container.innerHTML = `
         <div class="news-grid">
-          ${highAlerts.map(item => `
+          ${filtered.map(item => `
             <article class="news-card">
               <div class="news-top">
                 <span class="tag">${item.type || "Risk"}</span>
@@ -939,6 +951,15 @@
           `).join("")}
         </div>
       `;
+    }
+
+    function filterNews(category, button) {
+      document.querySelectorAll(".filter").forEach(function(btn) {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+      renderHighAlerts(category);
     }
 
     loadPlatforms();
