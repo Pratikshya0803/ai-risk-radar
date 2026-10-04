@@ -56,7 +56,10 @@ def main():
 **Risk type (automatic):** {item["type"]}  
 **Severity estimate (automatic):** {item["severity"]}  
 **Published date:** {item["date"] or "Unknown"}  
-**Source:** {item["source"]}
+**Source:** {item["source"]}  
+**Publisher:** {item.get("source_name", "Unknown")}  
+**Capture confidence:** {item.get("capture_confidence", "unknown")} ({item.get("capture_confidence_score", "—")}/100)  
+**Matched risk signals:** {", ".join(item.get("matched_risk_terms", [])) or "None recorded"}
 
 ### Headline
 {item["headline"]}
