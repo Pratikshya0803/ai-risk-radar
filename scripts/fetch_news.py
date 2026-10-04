@@ -54,11 +54,26 @@ NON_RISK_PHRASES = [
     "job openings", "new capability", "new integration"
 ]
 
-STRONG_RISK_TERMS = {
-    term
-    for terms in RISK_TERMS.values()
-    for term in terms
-    if len(term) >= 7
+# Concrete incident signals. Generic terms such as "AI safety" or
+# "copyright" are intentionally not enough to override a positive/product-news filter.
+CONCRETE_RISK_TERMS = {
+    "security breach", "security flaw", "cyberattack", "cyber attack",
+    "hack", "hacked", "hacking", "vulnerability", "vulnerabilities",
+    "exploit", "exploited", "malware", "credential theft", "data leak",
+    "data exposure", "privacy violation", "surveillance",
+    "regulator", "regulatory", "fine", "penalty", "antitrust",
+    "investigation", "ban", "blocked", "sanctions", "lawsuit", "court",
+    "sued", "legal action", "copyright infringement", "class action",
+    "judge", "litigation", "settlement", "outage", "downtime",
+    "service disruption", "disruption", "unavailable", "incident",
+    "service failure", "degraded service", "dangerous", "misuse",
+    "harmful", "jailbreak", "harm", "child safety", "safety risk",
+    "rogue", "unauthorized access", "unsafe behavior", "failed safety test"
+}
+
+GENERIC_SAFETY_TERMS = {
+    "ai safety", "safety concern", "safety concerns", "safety issue",
+    "model safety", "safety risk"
 }
 
 QUERY_GROUPS = [
@@ -216,9 +231,18 @@ def main():
 
                 # Normal product/business announcements are excluded unless
                 # there is a concrete risk signal in the same story.
-                if any(phrase in evidence for phrase in NON_RISK_PHRASES):
-                    if not any(term in evidence for term in STRONG_RISK_TERMS):
+                positive_news = any(phrase in evidence for phrase in NON_RISK_PHRASES)
+
+                # Product/business stories that merely mention "AI safety" are
+                # not risk incidents. Require a concrete adverse signal.
+                if category == "safety":
+                    concrete = any(term in evidence for term in CONCRETE_RISK_TERMS)
+                    only_generic_safety = all(term in GENERIC_SAFETY_TERMS for term in matched_terms(evidence))
+                    if only_generic_safety and not concrete:
                         continue
+
+                if positive_news and not any(term in evidence for term in CONCRETE_RISK_TERMS):
+                    continue
 
                 terms = matched_terms(evidence)
                 score, confidence_label = confidence(evidence, category, publisher)
