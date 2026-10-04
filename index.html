@@ -1031,10 +1031,10 @@
 
         container.innerHTML = platforms.map(platform => {
           const logoMap = {
-            "chatgpt": "openai",
+            "chatgpt": "https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128",
             "claude": "anthropic",
-            "gemini": "google-gemini",
-            "copilot": "microsoftcopilot",
+            "gemini": "https://www.google.com/s2/favicons?domain=gemini.google.com&sz=128",
+            "copilot": "https://www.google.com/s2/favicons?domain=copilot.microsoft.com&sz=128",
             "github-copilot": "githubcopilot",
             "perplexity": "perplexity",
             "llama": "meta",
@@ -1050,7 +1050,7 @@
           return `
             <a class="platform" href="platform.html?id=${platform.id}">
               <div class="platform-icon">
-                <img src="https://cdn.simpleicons.org/${logo}/FFFFFF" alt="${platform.name} logo" loading="lazy">
+                <img src="${logo.startsWith("http") ? logo : "https://cdn.simpleicons.org/" + logo + "/FFFFFF"}" alt="${platform.name} logo" loading="lazy" onerror="this.style.display='none'; this.parentElement.textContent='${platform.name.charAt(0)}';">
               </div>
               <h3>${platform.name}</h3>
               <p>${platform.company} · ${platform.category}</p>
