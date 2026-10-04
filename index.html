@@ -896,10 +896,10 @@
       const container = document.getElementById("news-container");
 
       try {
-        const response = await fetch("data/approved-news.json");
+        const response = await fetch("data/approved-news.json?v=" + Date.now(), { cache: "no-store" });
         if (!response.ok) throw new Error("News database unavailable");
 
-        allNews = await response.json();
+        allNews = (await response.json()).filter(item => String(item.status || "VERIFIED").toUpperCase() === "VERIFIED");
         renderNews("all");
       } catch (error) {
         container.innerHTML = `
