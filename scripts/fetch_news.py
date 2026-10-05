@@ -85,6 +85,25 @@ QUERY_GROUPS = [
     "AI safety harmful misuse jailbreak child safety"
 ]
 
+# Product/platform terms are deliberately separated from parent-company names.
+# A story must mention the monitored platform itself (or a known product/model
+# alias) in the headline or description. This prevents broad parent-company
+# coverage such as generic Google/OpenAI/Meta news from flooding the review queue.
+PLATFORM_ALIASES = {
+    "ChatGPT": ["chatgpt", "chat gpt", "gpt-5", "gpt-5.6", "gpt-6"],
+    "Claude": ["claude"],
+    "Gemini": ["gemini"],
+    "Copilot": ["microsoft copilot", "copilot"],
+    "GitHub Copilot": ["github copilot"],
+    "Perplexity": ["perplexity"],
+    "Llama": ["llama"],
+    "Mistral": ["mistral", "le chat"],
+    "Cohere": ["cohere", "command r", "command a"],
+    "Hugging Face": ["hugging face", "huggingface"],
+    "Amazon Bedrock": ["amazon bedrock", "aws bedrock", "bedrock"],
+    "Vertex AI": ["vertex ai", "vertexai"]
+}
+
 def clean(text):
     text = html.unescape(text or "")
     text = re.sub(r"<[^>]+>", " ", text)
@@ -193,11 +212,14 @@ def main():
     for platform in platforms:
         name = platform["name"]
         company = platform["company"]
+        aliases = PLATFORM_ALIASES.get(name, [name.lower()])
 
-        # Several focused queries catch more risk stories than one broad query.
+        # Search for the monitored platform/product itself, not the parent
+        # company. This sharply reduces unrelated Google/OpenAI/Meta/etc. news.
+        platform_query = " OR ".join(f'"{alias}"' for alias in aliases)
         queries = []
         for group in QUERY_GROUPS:
-            queries.append(f'("{name}" OR "{company}") ({group})')
+            queries.append(f'({platform_query}) ({group})')
 
         for query in queries:
             try:
@@ -225,6 +247,18 @@ def main():
                     continue
 
                 evidence = f"{title} {description}".lower()
+
+                # Require explicit platform/product relevance. Parent-company
+                # mentions alone are not sufficient. The title or RSS description
+                # must contain the monitored platform or one of its known aliases.
+                platform_terms = PLATFORM_ALIASES.get(name, [name.lower()])
+                matched_platform_terms = [
+                    term for term in platform_terms
+                    if term in evidence
+                ]
+                if not matched_platform_terms:
+                    continue
+
                 category = classify(evidence)
                 if category is None:
                     continue
@@ -267,6 +301,7 @@ def main():
                     "capture_confidence": confidence_label,
                     "capture_confidence_score": score,
                     "matched_risk_terms": terms,
+                    "matched_platform_terms": matched_platform_terms,
                     "discovered_at": datetime.now(timezone.utc).isoformat()
                 }
 
