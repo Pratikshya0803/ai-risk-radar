@@ -1,21 +1,5 @@
 [
   {
-    "id": "c307be8f1e3abfbeb4a1",
-    "platform": "ChatGPT",
-    "company": "OpenAI",
-    "type": "safety",
-    "severity": "medium",
-    "headline": "Exclusive | OpenAI Scraps Release of New AI Model Over Safety Concerns - WSJ",
-    "summary": "Unverified discovery from a public news feed. Manual verification required before publication.",
-    "source": "Google News RSS",
-    "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNcC0xNDExdTJodUowZi1yeWdFN3M5RlpvY3FvZ1lQeHltWGVkeG01ZTVlaHJ0TldqVVRhekJhWl9ZRTRLNHRqX1NQQVFKMW5NRnhBTmlUNWNpX1FBX3Myc3VlaGIxbFZTZDZYRlYwTGNVLTUtNnJScGJWcm5rX0hMMmNadFFmZw?oc=5",
-    "date": "Mon, 28 Sep 2026 23:07:00 GMT",
-    "status": "UNVERIFIED",
-    "discovered_at": "2026-10-03T12:58:01.684027+00:00",
-    "issue_number": 1,
-    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/1"
-  },
-  {
     "id": "a5a1617b232e1696a74a",
     "platform": "ChatGPT",
     "company": "OpenAI",
