@@ -7,6 +7,7 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 
 PLATFORMS_FILE = "data/platforms.json"
 PENDING_FILE = "data/pending-news.json"
@@ -244,6 +245,19 @@ def main():
 
                 # Avoid duplicate syndicated coverage already captured in another feed.
                 if any(similar_title(title, existing.get("headline", "")) for existing in new_items[-150:]):
+                    continue
+
+                # Only queue stories published from the first day of the
+                # current month through today (UTC). This keeps the review
+                # queue focused on the current month's news.
+                try:
+                    published_at = parsedate_to_datetime(pub_date).astimezone(timezone.utc).date()
+                except Exception:
+                    print(f"Skipping item with unparseable publication date: {title}")
+                    continue
+                today = datetime.now(timezone.utc).date()
+                month_start = today.replace(day=1)
+                if not (month_start <= published_at <= today):
                     continue
 
                 evidence = f"{title} {description}".lower()
