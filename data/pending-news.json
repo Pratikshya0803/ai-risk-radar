@@ -94,5 +94,31 @@
     "discovered_at": "2026-10-04T15:21:14.160651+00:00",
     "issue_number": 61,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/61"
+  },
+  {
+    "id": "f0e53c0cd0d1b8788559",
+    "platform": "Gemini",
+    "company": "Google",
+    "type": "legal",
+    "severity": "low",
+    "headline": "Judge Rejects Gemini and CFTC Bid to Undo USD 5 Million Settlement - Analytics Insight",
+    "summary": "Unverified discovery. Matched risk signals: judge, settlement. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "Analytics Insight",
+    "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQLUc1WnpNLWRPblZFNkgzR25hUkg3WW1PdExUdUlEd3hXZ1Y4NFNaNXZIYUQ0dFJSZklycTE5VkdWSXFBOVR0bkJOM2VNaHluN1RIQXV3TEZTbEVkY1YzVTlJTjl2UTNjeTBGRzJ5a3dWZ2xlZG12d1M0THpyNVg1akZwdjVCYTE3OXR6LW5fNEJUQ3VVbXdrSm5SS2pvc3NtQlF4Q2NtNnFuQzZQUWVJTzFNZTXSAbQBQVVfeXFMUC1HNVp6TS1kT25WRTZIM0duYVJIN1ltT3RMVHVJRHd4V2dWODRTWjV2SGFENHRSUmZJcnExOVZHVklxQTlUdG5CTjNlTWh5bjdUSEF1d0xGU2xFZGNWM1U5SU45dlEzY3kwRkcyeWt3VmdsZWRtdndTNEx6cjVYNWpGcHY1QmExNzl0ei1uXzRCVEN1VW13a0puUktqb3NzbUJReENjbTZxbkM2UFFlSU8xTWU1?oc=5",
+    "date": "Fri, 16 Oct 2026 14:52:22 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "medium",
+    "capture_confidence_score": 65,
+    "matched_risk_terms": [
+      "judge",
+      "settlement"
+    ],
+    "matched_platform_terms": [
+      "gemini"
+    ],
+    "discovered_at": "2026-10-16T16:37:05.998437+00:00",
+    "issue_number": 382,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/382"
   }
 ]
