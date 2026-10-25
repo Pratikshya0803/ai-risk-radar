@@ -120,5 +120,30 @@
     "discovered_at": "2026-10-16T16:37:05.998437+00:00",
     "issue_number": 382,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/382"
+  },
+  {
+    "id": "e5392e4c28af7158889b",
+    "platform": "Gemini",
+    "company": "Google",
+    "type": "regulatory",
+    "severity": "high",
+    "headline": "Gemini, CFTC lose bid to cancel $5 million penalty - Crypto News",
+    "summary": "Unverified discovery. Matched risk signals: penalty. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "Crypto News",
+    "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9RNERKUXJHdGNydEc5NGtkMm5EemdxNjRhSlprckVPY25EanVvTFVMVkdPR21zSXpjcXNtZVVtVDIzUHRiNk9EWWZyc2k2NjRJNXJ5LThyYm5lR1o5cFN6RWJVdVZDVklTWm9WQi1vYjNEV1FuYXRtMA?oc=5",
+    "date": "Thu, 15 Oct 2026 07:00:00 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "medium",
+    "capture_confidence_score": 55,
+    "matched_risk_terms": [
+      "penalty"
+    ],
+    "matched_platform_terms": [
+      "gemini"
+    ],
+    "discovered_at": "2026-10-25T11:24:02.935560+00:00",
+    "issue_number": 383,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/383"
   }
 ]
