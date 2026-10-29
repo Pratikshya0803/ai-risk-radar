@@ -145,5 +145,30 @@
     "discovered_at": "2026-10-25T11:24:02.935560+00:00",
     "issue_number": 383,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/383"
+  },
+  {
+    "id": "e5a6abae46060c6585f7",
+    "platform": "Amazon Bedrock",
+    "company": "Amazon Web Services",
+    "type": "privacy",
+    "severity": "low",
+    "headline": "Bedrock Data Introduces AI-Assisted Remediation to Reduce Data Exposure at Enterprise Scale - 01net",
+    "summary": "Unverified discovery. Matched risk signals: data exposure. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "01net",
+    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQbG92ak83RXhBWThhOG5CZ0M5c25Xa3RIRHBfRFhzUHc3WFMyVXpVU1BMODJJMVZyRVZlMGs0NGVoc3FSODZhQmtkVTZfTmlZdzN3RDRBU3NyOFdfSTkyVHBPWGlsbFhYbzRKSWE1TXhLdTREUkpPXzBOYVUxUTFCTlpETHg4dlUwSzBZUXhfdlROQXdGSUs4LWROam5BQ0JKTHAtRTZMVVpoSDdRQ2RXdHJxNA?oc=5",
+    "date": "Thu, 29 Oct 2026 16:00:00 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "low",
+    "capture_confidence_score": 50,
+    "matched_risk_terms": [
+      "data exposure"
+    ],
+    "matched_platform_terms": [
+      "bedrock"
+    ],
+    "discovered_at": "2026-10-29T18:57:31.227038+00:00",
+    "issue_number": 384,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/384"
   }
 ]
