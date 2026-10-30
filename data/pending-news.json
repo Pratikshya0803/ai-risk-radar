@@ -170,5 +170,30 @@
     "discovered_at": "2026-10-29T18:57:31.227038+00:00",
     "issue_number": 384,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/384"
+  },
+  {
+    "id": "79b416013117a7202169",
+    "platform": "Claude",
+    "company": "Anthropic",
+    "type": "security",
+    "severity": "high",
+    "headline": "Pentagon AI Security Breach: Accenture Employee Connected Personal Claude Agent, Sensitive Data Flowed Out for Two Months Before Detection - BigGo Finance",
+    "summary": "Unverified discovery. Matched risk signals: security breach. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "BigGo Finance",
+    "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBYZUMxZGFXT3g5U3RXSG5XbUVkNW40Q0xCY1V4SXBvb1YyTUxYRW16YUdhOUgxNlZHMXhoNHIxRmZYLXpPLWU4SU9BRmZwR3lqYUpIc1ZVcFNNYjVEaU05S2hiWTFsV20zemFwRFVJRThKazdETFE?oc=5",
+    "date": "Fri, 30 Oct 2026 00:26:00 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "medium",
+    "capture_confidence_score": 55,
+    "matched_risk_terms": [
+      "security breach"
+    ],
+    "matched_platform_terms": [
+      "claude"
+    ],
+    "discovered_at": "2026-10-30T09:58:15.473831+00:00",
+    "issue_number": 385,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/385"
   }
 ]
