@@ -195,5 +195,30 @@
     "discovered_at": "2026-10-30T09:58:15.473831+00:00",
     "issue_number": 385,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/385"
+  },
+  {
+    "id": "267938aeb54cc253f713",
+    "platform": "Amazon Bedrock",
+    "company": "Amazon Web Services",
+    "type": "privacy",
+    "severity": "low",
+    "headline": "Bedrock Data routes data exposure fixes to owners and verifies results - Help Net Security",
+    "summary": "Unverified discovery. Matched risk signals: data exposure. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "Help Net Security",
+    "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOTVBGUWxSanFtOHhnaUtoQlczaGRxVUo0QzZTX21ac1RBalU5WUVBYVI3bGFoRlhpako3cnBxVndQMHZqbkc3ZGQwejJfZjRUbmNhRVdPNFRUeXBuOF80VFV4OXNES0RoYWRZNFNsMExUN05BQnB0Zmx3Q2ZRa043YnUta2pmOFE?oc=5",
+    "date": "Fri, 30 Oct 2026 12:39:09 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "low",
+    "capture_confidence_score": 50,
+    "matched_risk_terms": [
+      "data exposure"
+    ],
+    "matched_platform_terms": [
+      "bedrock"
+    ],
+    "discovered_at": "2026-10-30T16:41:41.335846+00:00",
+    "issue_number": 386,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/386"
   }
 ]
