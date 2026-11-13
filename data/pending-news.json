@@ -370,5 +370,55 @@
     "discovered_at": "2026-11-13T16:19:30.226366+00:00",
     "issue_number": 392,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/392"
+  },
+  {
+    "id": "cd0e84d0c25f26ed2b0a",
+    "platform": "Claude",
+    "company": "Anthropic",
+    "type": "operational",
+    "severity": "medium",
+    "headline": "Microsoft 365 outage hits Claude’s Outlook and workplace integrations - Gulf Business",
+    "summary": "Unverified discovery. Matched risk signals: outage. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "Gulf Business",
+    "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPRUJFWkxNaUJ3X213cGpaemRjVjdjWFdXOXIwQ0dFWEtORHBpUE5nVGZBR3VSa1hfS3QtMUVJbnMwV1BZNER0RFVHYUluelhkb25iTXFmN1lFQ2QxWkF5eWNQYWJ4VDRKaDl2UkNFOXdkdC1qRnY1TGhmLWdCcjJrYU1Rang0dUVrZEtlRTZ1MmpQSU44ZVl3aFlCa1FhM1F4T082eVd2WTk1cFU?oc=5",
+    "date": "Fri, 13 Nov 2026 13:26:14 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "low",
+    "capture_confidence_score": 50,
+    "matched_risk_terms": [
+      "outage"
+    ],
+    "matched_platform_terms": [
+      "claude"
+    ],
+    "discovered_at": "2026-11-13T22:36:00.699514+00:00",
+    "issue_number": 393,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/393"
+  },
+  {
+    "id": "c380c5185cf4879ccecb",
+    "platform": "Claude",
+    "company": "Anthropic",
+    "type": "operational",
+    "severity": "medium",
+    "headline": "Claude Suffers Login Outage Across Claude.ai and Claude Code While Microsoft 365 Connector Stays Down - Startup Fortune",
+    "summary": "Unverified discovery. Matched risk signals: outage. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "Startup Fortune",
+    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQeDBHMlltQjk2LW1rRlJFM1k0VWtWcnVjdDR5QUloaHpmbGZuQ0tvYXpPbE1JVV83THQ5UkV2NE1reUtwUmROcDdsdzNVNnlBSEdYcmFNaEtCV3VBamlBU2Npa2FQT2szT2phRHlNUlB2UDlNYjdrSnVYZUw5VnFxY0drRU4yRnVrS2xTV0h4bHJIWTdRdndtTUVkSXBpazl2dDhENnRyOVdzcjhIRncyOGZQd04yVEVlZTZnV3hjNWN6ZjdBRjNR?oc=5",
+    "date": "Fri, 13 Nov 2026 10:02:46 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "low",
+    "capture_confidence_score": 50,
+    "matched_risk_terms": [
+      "outage"
+    ],
+    "matched_platform_terms": [
+      "claude"
+    ],
+    "discovered_at": "2026-11-13T22:36:00.699734+00:00",
+    "issue_number": 394,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/394"
   }
 ]
