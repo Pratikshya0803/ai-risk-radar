@@ -220,5 +220,30 @@
     "discovered_at": "2026-10-30T16:41:41.335846+00:00",
     "issue_number": 386,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/386"
+  },
+  {
+    "id": "920226c0679211258045",
+    "platform": "Copilot",
+    "company": "Microsoft",
+    "type": "operational",
+    "severity": "medium",
+    "headline": "Microsoft outage sees Teams, Outlook and Copilot suffer 'connectivity issues' - BBC",
+    "summary": "Unverified discovery. Matched risk signals: outage. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "BBC",
+    "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9MOHlvNUxUTlo4UndkMHlxZDVleVo3TkU0VWp2ZXc4V1pRQ055Z3o0MG03RUZLZGpYa2NZXzdKYXN1cWFkaE9YUE52Nzd3NTVBcVlKVG51NU1WaVh1MXc?oc=5",
+    "date": "Thu, 12 Nov 2026 20:25:29 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "low",
+    "capture_confidence_score": 50,
+    "matched_risk_terms": [
+      "outage"
+    ],
+    "matched_platform_terms": [
+      "copilot"
+    ],
+    "discovered_at": "2026-11-13T00:19:37.188992+00:00",
+    "issue_number": 387,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/387"
   }
 ]
