@@ -245,5 +245,55 @@
     "discovered_at": "2026-11-13T00:19:37.188992+00:00",
     "issue_number": 387,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/387"
+  },
+  {
+    "id": "99982c0ffe8448604682",
+    "platform": "Copilot",
+    "company": "Microsoft",
+    "type": "operational",
+    "severity": "medium",
+    "headline": "Microsoft Says It’s Working to Fix Outlook, Copilot Outage - Bloomberg.com",
+    "summary": "Unverified discovery. Matched risk signals: outage. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "Bloomberg.com",
+    "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQbXc2TFhrUDB2c25fNklOQ3BNd2UtVVgxNXA3SE9TQTJTT3Rrd0FCWjBhclhDR2tGYWktTGJmTkUzQ09kbWEtaFR1Rm1ydHg4dmJWb1J3QmV1bmtjR1FmZ2Q4eXAwRjkwNTV1aGNlX3d6RjQyeTZhMmZRYndjZjJpSmhvRjZjV1o2NmlxNm80OVJISEtIUllIMzMzakpyZFVOcDA5d1ZSZlpFUnVH?oc=5",
+    "date": "Fri, 13 Nov 2026 06:26:00 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "low",
+    "capture_confidence_score": 50,
+    "matched_risk_terms": [
+      "outage"
+    ],
+    "matched_platform_terms": [
+      "copilot"
+    ],
+    "discovered_at": "2026-11-13T07:54:50.998207+00:00",
+    "issue_number": 388,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/388"
+  },
+  {
+    "id": "39f99e6fe2511b6ee77a",
+    "platform": "Copilot",
+    "company": "Microsoft",
+    "type": "operational",
+    "severity": "medium",
+    "headline": "Massive Microsoft 365 outage disrupts Outlook, Teams, Copilot worldwide - BleepingComputer",
+    "summary": "Unverified discovery. Matched risk signals: outage. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "BleepingComputer",
+    "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxORUEtbE82eDZxeC1ubkhOcFFPUFhLQUNMdXdKbDlVTGtDbmFfakxXd2hpVmJZTEw1UFdOaThfNTdtcUhXWTU4TWgtUnF3RkowN0xRNlM5SW9ZOFhvMUpZaUFPQXNJOHh5bzlSMHk0QmhTNTNXWkgwVGVsVTlDbE5fMnhDQXJndU5hOG9FUl9GaEtreTVkWENOUnhpMVIyNUpTMndwQ3gxd08yNUN0aVVnem9sc3owcUdweFE?oc=5",
+    "date": "Thu, 12 Nov 2026 20:15:16 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "low",
+    "capture_confidence_score": 50,
+    "matched_risk_terms": [
+      "outage"
+    ],
+    "matched_platform_terms": [
+      "copilot"
+    ],
+    "discovered_at": "2026-11-13T07:54:50.998385+00:00",
+    "issue_number": 389,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/389"
   }
 ]
