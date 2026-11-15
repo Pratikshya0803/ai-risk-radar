@@ -420,5 +420,32 @@
     "discovered_at": "2026-11-13T22:36:00.699734+00:00",
     "issue_number": 394,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/394"
+  },
+  {
+    "id": "706b75a7f3c32bcf5f49",
+    "platform": "Gemini",
+    "company": "Google",
+    "type": "legal",
+    "severity": "high",
+    "headline": "Google Lawsuits: From Gemini AI Safety Case To $700 Million Play Store Settlement; Check List Of 8 Major Legal Battles - Jagran Josh",
+    "summary": "Unverified discovery. Matched risk signals: lawsuit, settlement, ai safety. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "Jagran Josh",
+    "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQZFhySURmajJlMlFJbmFtaXhyZ2xLUF9CbzJCUDQ0Z19fdmVvU2VkQ2Z2NFhsZzdic1lBVW9NSm56T1ZZNHVucDQyRTlkV2czdmlHd1Jsa2lnYU5IV2l4UTJfQnM5dzhHbDFfQ3F0cjFGbXFVS3ZxZVU2MmJmakw3TjBySzV1WlUybG5FRW55LU5laVQxRmRUeGcweExLWkdYdmx2d282Y3VSdHAzWm5TUUFtR3U3alVoZmRDdXdxd3htcVVyNTBETUVoU3d3M1BLLU16ZmxRNTdkbWZ2eEI3MVZZNzhGT29ndWZpUFk5bmpHTlRGYlNBSUhjc2U1cmpWQlBZ0gGKAkFVX3lxTE9XVy1ST1ppSzZwNnVFNHJqREh4UDNfbGtTZGZXejV4dm14bkFEWEk1QzB1OUZKVmJZdlFTUjA0cGNpcVdndG5qek02VVZ5amo2VnduV3pqNmM4RThvY2gtdnhuNXk5elJpSlhXaDFlYTMwUGhJYXViQ0hSaXgzSUROVlplU3AzSFBBNDA1WU5XSGNIUkhBNURIT0RnSFl4Y29PLWNoYms2MnBZQlN5N3dQMWJSLWwzaXg2d053eVBzblhOQ0dSR1JPS1BtNjVPSGlpNWNqbXZjMmJicmN2YkFORG5peUdhMEI3b1dldGhUY1ZKbW5qOEhSWTNyT2tTdkFoX1FPeVJlZ1h3?oc=5",
+    "date": "Sun, 08 Nov 2026 05:24:57 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "high",
+    "capture_confidence_score": 75,
+    "matched_risk_terms": [
+      "lawsuit",
+      "settlement",
+      "ai safety"
+    ],
+    "matched_platform_terms": [
+      "gemini"
+    ],
+    "discovered_at": "2026-11-15T09:21:46.216058+00:00",
+    "issue_number": 395,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/395"
   }
 ]
