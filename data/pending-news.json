@@ -447,5 +447,31 @@
     "discovered_at": "2026-11-15T09:21:46.216058+00:00",
     "issue_number": 395,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/395"
+  },
+  {
+    "id": "cd4605a313cd060860ae",
+    "platform": "Claude",
+    "company": "Anthropic",
+    "type": "operational",
+    "severity": "medium",
+    "headline": "Anthropic blames Microsoft for Claude outage & downtime as user authentication breaks - Neowin",
+    "summary": "Unverified discovery. Matched risk signals: outage, downtime. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "Neowin",
+    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNQThzY25LNHNlNUFLb0F0Nkc0cUJUU2xFU0xtdFdldVZ1MjZ4V1RkU2dWbkhjYmRzT3BuX0kxQnI1ZFhFcHg0OUFEYm9sdzZrZXBNYzFnaWVvNFZvUl9MaVZvWG9lUS1qdDdzZDhyYmlHWXF5WV92SlRueEVnUHBvN0dpalJhbTJoMWM5dV9iU2lIclJqZ3I0S1E3R3RHUm9ZRmxKQnFRcG1FVE5ZdXlLS3hZRQ?oc=5",
+    "date": "Fri, 13 Nov 2026 11:03:00 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "medium",
+    "capture_confidence_score": 60,
+    "matched_risk_terms": [
+      "outage",
+      "downtime"
+    ],
+    "matched_platform_terms": [
+      "claude"
+    ],
+    "discovered_at": "2026-11-16T09:38:35.468248+00:00",
+    "issue_number": 396,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/396"
   }
 ]
