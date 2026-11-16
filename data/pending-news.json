@@ -473,5 +473,30 @@
     "discovered_at": "2026-11-16T09:38:35.468248+00:00",
     "issue_number": 396,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/396"
+  },
+  {
+    "id": "a8f8ce609df6006d3504",
+    "platform": "Claude",
+    "company": "Anthropic",
+    "type": "operational",
+    "severity": "medium",
+    "headline": "Claude not working? Why users are facing issues today amid widespread outages at Microsoft Outlook on Nov - The Economic Times",
+    "summary": "Unverified discovery. Matched risk signals: outage. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "The Economic Times",
+    "url": "https://news.google.com/rss/articles/CBMinAJBVV95cUxNTUQxdjc4emk5Vkl3bXVIZ1MzM1VJY0RVWGZzVi1QMXBjWDRKaHZZVDZ1VmppX1FJNWFvYWtSZmIzMFNCY0VfQjJ3ZWl1YXI4RlktWDFOQlFNeV9kNWdhWlp2NjhrSmg4ZDVkaDB1ZGgtOWJmZk1pMHRDLTVzSml3bTlPWEdaVjNIQjVtZmRCNHBlZmItREdDYjhIT0J3YjlLSlgxZ2RnM0pCdWxXV3k2SG52Y194RnptVDREd2lIdmlMTF85bVJva1lLRHhJZmg2VFpzUG9oMm9ONWc0LU42WDE5OTBhS0plN0NyZXdfWms0MDlHSHh0MExDeVJUS0dUWG1CWFE4ZVFaNDBCeFBEVHM0M2NZR1ZYdTFaddIBogJBVV95cUxQd0lFMVJ4ak5HT0c2bmlqbE1RVTdUbUVVbDc5UFJzdFZ3czlYRjdaMFc4VHdBazZzUlAtbTFfSmY4X0hoZEdrQkk2NWJ3SS1Qa1FtRUNNaXNNMk15eFVNY2dIVGYtU0NsV0VKdkYwcHYzVjI1UUkzZkNaWl94M0FMenRQMzNhdjVIY3pTOGFXVnlxOHhNZkpjcmJ0d3BKTXp6QjRQUDhUQzE0LXg4dzVteWxfVjAza2tvYThhbmJyZ2NiZkpudklOY3dKaWg4RG1WZVlvUUE5VkQwMk5PbS1nakxtMTdIbzdYYXYxS2hBV0x1ZnUwQklDUEJmVS01c1R5RWdjZmVpbm84RkxsaFdVVTItX3BvU25mWVQ5SkM0Zk1fQQ?oc=5",
+    "date": "Fri, 13 Nov 2026 10:48:24 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "low",
+    "capture_confidence_score": 50,
+    "matched_risk_terms": [
+      "outage"
+    ],
+    "matched_platform_terms": [
+      "claude"
+    ],
+    "discovered_at": "2026-11-16T20:26:50.138765+00:00",
+    "issue_number": 397,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/397"
   }
 ]
