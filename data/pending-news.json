@@ -524,5 +524,31 @@
     "discovered_at": "2026-11-17T03:50:38.478394+00:00",
     "issue_number": 398,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/398"
+  },
+  {
+    "id": "55b4078fedbb84c29789",
+    "platform": "Hugging Face",
+    "company": "Hugging Face",
+    "type": "security",
+    "severity": "high",
+    "headline": "California sues OpenAI, seeking court-ordered changes after the Hugging Face hack - News4JAX",
+    "summary": "Unverified discovery. Matched risk signals: hack, court. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "News4JAX",
+    "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPaWJIZnYwSEMxMjV0cE9TTTdUMnNVMVpLNzc5YXpoRG1qUHQ4dHhHMElBdFN0RzR4b0c1OWpFZVlBS2Vzd1gzM2Q4anBCMTVhdHRJcG12OFRyWTRuLU9NSkdsN3Z2SWtqUXZoVW12bnM2X2NWbGlpbEJNbnRzZmowdWdOQ2JCUl9vaS1uYl9rMVI2OWRMVVFvYm5qYXQwUC1TRFhKMjBDS005ZS1tRGR2N0NNa3piMmhHU2JSOHZZLUItV0Ny?oc=5",
+    "date": "Mon, 16 Nov 2026 22:08:40 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "medium",
+    "capture_confidence_score": 65,
+    "matched_risk_terms": [
+      "hack",
+      "court"
+    ],
+    "matched_platform_terms": [
+      "hugging face"
+    ],
+    "discovered_at": "2026-11-17T13:21:34.989171+00:00",
+    "issue_number": 399,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/399"
   }
 ]
