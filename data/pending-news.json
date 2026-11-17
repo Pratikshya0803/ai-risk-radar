@@ -498,5 +498,31 @@
     "discovered_at": "2026-11-16T20:26:50.138765+00:00",
     "issue_number": 397,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/397"
+  },
+  {
+    "id": "02c8591ea76bac3e037b",
+    "platform": "Claude",
+    "company": "Anthropic",
+    "type": "operational",
+    "severity": "medium",
+    "headline": "Claude suffers two outages in one day, Anthropic confirms disruptions to AI chatbot and coding tools | Trending - Hindustan Times",
+    "summary": "Unverified discovery. Matched risk signals: outage, disruption. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "Hindustan Times",
+    "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNQnhWSEhYWk1LOGY0aER3X09HSnZwQVhUY2ZhcXRlU2liTWZHdkQ2Xy1LQlBRRWl2MGRERE9TQ0dtUkJ0TkN0ZFFSdjF0RExXYnJ5NFFjOXByMVFzbDN2UEVuWjRWWnBweXgxbXFBckUyRkZIRHdDMHYtdzBnc3VRdUE4V1h3X0V4RlNvR004ekNTZlAzUmxMRXNaRl95ZzJ3UFZ2S3NXT25mR2hPV3JvRVpUaXRLdGtlTU1vaEF6dXhzVFZkSDJtVXlYTGtjT1ZrbDRKSUczc0Q5dUI4c2JBa3J4ZVBqZXVHRGxxaXpCTFR3QdIB9wFBVV95cUxQVU1DV3dOdzNTZktPRWNJZEk4VEM2VWRKU3p1Q3VQNU1XZFRMLVFGLUYzNW5aSVNkeU9Fajc3UE91Tks0OGx2YzFvalFCeG1NT3pUSzRRNEpDc3FRVVBtXzJaLWtfRWpPQ2xROEp2OWpJSjVwS3NENWh6N1hlTVAyOVJMd04xcFF1N3ZxQWVnMk1oYm5KMVZjREI5S3J4V3c4aWNJellncUtud1U3cjh1MWJYYW5vX0k3V0VTcTF6eklsNnQ3NkpQeUxNSXZWb25pajYwUF9YWGdCNnZwWUVzY2IzcFhHb3pnUnF2S1laeVdFTG1rbV80?oc=5",
+    "date": "Fri, 13 Nov 2026 17:01:55 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "medium",
+    "capture_confidence_score": 60,
+    "matched_risk_terms": [
+      "outage",
+      "disruption"
+    ],
+    "matched_platform_terms": [
+      "claude"
+    ],
+    "discovered_at": "2026-11-17T03:50:38.478394+00:00",
+    "issue_number": 398,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/398"
   }
 ]
