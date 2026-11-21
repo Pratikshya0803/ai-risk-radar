@@ -550,5 +550,55 @@
     "discovered_at": "2026-11-17T13:21:34.989171+00:00",
     "issue_number": 399,
     "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/399"
+  },
+  {
+    "id": "f2c5394227f8c38e5ca9",
+    "platform": "Claude",
+    "company": "Anthropic",
+    "type": "operational",
+    "severity": "medium",
+    "headline": "Is ChatGPT down because of the Microsoft outage? No, and its Microsoft 365 connector is fixed, Claude's too - Nacionale",
+    "summary": "Unverified discovery. Matched risk signals: outage. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "Nacionale",
+    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPc1dhZ2ktbXFVZEtPTXFmbTg0QWNsZnhRQ0Z4T25uOUR6VThlODNzOUszUHF3T29TU2VDYkNQU0FoWTE2OWdQSXdDaDhDOG5LUTI1Wmk2NUpIbHhIRHdrc0RkNnF3dEg0TmtrVEJwQ2J3MktfSUp6YXYwdE1CbHN5VUJlSW90ejA1M2JBVnBJUGxnRkl3TTJaUFlBdElqTnN5cExwOEMzWk9fd3NIS2c?oc=5",
+    "date": "Fri, 13 Nov 2026 05:29:27 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "low",
+    "capture_confidence_score": 50,
+    "matched_risk_terms": [
+      "outage"
+    ],
+    "matched_platform_terms": [
+      "claude"
+    ],
+    "discovered_at": "2026-11-21T01:30:33.476228+00:00",
+    "issue_number": 400,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/400"
+  },
+  {
+    "id": "de99b19cc0404b968c4b",
+    "platform": "Hugging Face",
+    "company": "Hugging Face",
+    "type": "security",
+    "severity": "high",
+    "headline": "California sues OpenAI over AI models’ cyberattacks on Hugging Face, other companies - Reuters",
+    "summary": "Unverified discovery. Matched risk signals: cyberattack. Manual verification required before publication.",
+    "source": "Google News RSS",
+    "source_name": "Reuters",
+    "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNUnZpbWVjMld3R0NVUjRwT1ZIZW04eFJwYVYzNzUzUi1pckdSQmJiZkh5MnNWeHlnX2ZDVUtBVGU5emdtV3hweWlENDBqeXFoTThlSWhTY0pNRURXbFBmOWRySmkwOGxFZGlPQW9qekNhVzB2bW1SQW1rbU52M01vRTc2M0V3Zktfb00xNE04NElpSTU3c2RXTlVZT3JPYkdSRkFqRUpVSmhvZ0JtcHM5LURPN2hXWDZ5Mk1HVkVZQW5Cdw?oc=5",
+    "date": "Mon, 16 Nov 2026 20:47:43 GMT",
+    "status": "UNVERIFIED",
+    "capture_confidence": "medium",
+    "capture_confidence_score": 55,
+    "matched_risk_terms": [
+      "cyberattack"
+    ],
+    "matched_platform_terms": [
+      "hugging face"
+    ],
+    "discovered_at": "2026-11-21T01:30:47.291294+00:00",
+    "issue_number": 401,
+    "issue_url": "https://github.com/Pratikshya0803/ai-risk-radar/issues/401"
   }
 ]
